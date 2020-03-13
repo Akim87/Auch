@@ -2,10 +2,10 @@
   <transition name="popup">
     <div class="popup_mask">
       <div class="popup_wrapper">
-        <div class="popup_container d-flex flex-column">
+        <div class="popup_container">
           <div class="popup_header">
             <h1 class="popup_title">Хотите стать автором?</h1>
-            <button class="closeButton" @click="$emit('close')"></button>
+            <button class="popup_close" @click="$emit('close')"></button>
           </div>
           <p class="popup_text">
             Подкасты — очень демократичное медиа. Чтобы начать записывать свой, достаточно телефона.
@@ -13,11 +13,21 @@
             отредактировать звук и отправить на все платформы для подкастов. Главное, чтобы вам было
             что сказать.
           </p>
-          <div class="input-field">
-            <label for="disabled">Имя</label>
-            <input type="text" class="validate" placeholder="Краткий ответ">
-        </div>
-          <baseButton class="popup_submit" buttonText="Отправить" @click="$emit('close')" />
+          <form class="popup_form d-flex flex-column">
+            <div class="popup_form-item d-flex flex-column">
+              <label for="disabled" class="popup_label required">Имя</label>
+              <input type="text" class="popup_input" placeholder="Краткий ответ">
+            </div>
+            <div class="popup_form-item d-flex flex-column">
+              <label for="disabled" class="popup_label required">Адрес электронной почты</label>
+              <input type="text" class="popup_input" placeholder="Краткий ответ">
+            </div>
+            <div class="popup_form-item d-flex flex-column">
+              <label for="disabled" class="popup_label">Номер телефона</label>
+              <input type="text" class="popup_input" placeholder="Краткий ответ">
+            </div>
+            <baseButton class="popup_submit" buttonText="Отправить" @click="$emit('close')" />
+        </form>
         </div>
       </div>
     </div>
@@ -62,7 +72,8 @@ export default {
     border-radius: 19px;
     transition: all 0.3s ease;
     padding-bottom: 4%;
-    overflow:hidden
+    overflow: auto;
+    max-height: 100vh;
   }
 
   &_header {
@@ -75,17 +86,7 @@ export default {
     color: white;
   }
 
-  &_text {
-    padding: 4%;
-    font-size: $font-size-text;
-    font-style: $font-family-Lora;
-  }
-
-  &_submit{
-    align-self: center;
-  }
-}
-  .closeButton{
+  &_close {
     position: absolute;
     top: 50%;
     right: 7%;
@@ -107,5 +108,41 @@ export default {
       transform: rotate(45deg);
       top: -4px;
     }
+  }
+
+  &_text {
+    padding: 4%;
+    font-size: $font-size-text;
+    font-style: $font-family-Lora;
+  }
+
+  &_form-item {
+    background-color: #FFF0E2;
+    padding: 2% 4%;
+    margin: 1% 0;
+  }
+
+  &_label {
+    font-size: 1.875rem;
+    margin-bottom: 2%;
+  }
+
+  &_input {
+    border: none;
+    border-bottom: 1px dashed #414141;
+    background-color: inherit;
+    font-size: 1.375rem;
+  }
+
+  &_submit {
+    margin-top: 6%;
+    align-self: center;
+  }
+}
+
+.required::after {
+  content: '*';
+  color: red;
+  margin-left: .5rem;
 }
 </style>
