@@ -39,6 +39,7 @@ export default {
 <style scoped lang="scss">
   .header {
     box-shadow: 4px 4px 50px rgba(0, 0, 0, 0.25);
+    margin-bottom: 6%;
   }
 
   .menu {

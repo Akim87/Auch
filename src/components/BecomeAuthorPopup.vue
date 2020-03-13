@@ -2,14 +2,21 @@
   <transition name="popup">
     <div class="popup_mask">
       <div class="popup_wrapper">
-        <div class="popup_container">
-          <h1 class="popup_header">Хотите стать автором?</h1>
+        <div class="popup_container d-flex flex-column">
+          <div class="popup_header">
+            <h1 class="popup_title">Хотите стать автором?</h1>
+            <button class="closeButton" @click="$emit('close')"></button>
+          </div>
           <p class="popup_text">
             Подкасты — очень демократичное медиа. Чтобы начать записывать свой, достаточно телефона.
             Например, есть программа и одновременно платформа Anchor, в ней можно сразу после записи
             отредактировать звук и отправить на все платформы для подкастов. Главное, чтобы вам было
             что сказать.
           </p>
+          <div class="input-field">
+            <label for="disabled">Имя</label>
+            <input type="text" class="validate" placeholder="Краткий ответ">
+        </div>
           <baseButton class="popup_submit" buttonText="Отправить" @click="$emit('close')" />
         </div>
       </div>
@@ -55,20 +62,50 @@ export default {
     border-radius: 19px;
     transition: all 0.3s ease;
     padding-bottom: 4%;
+    overflow:hidden
   }
 
   &_header {
     background-color: $colour-accent;
     padding: 4%;
+    position: relative;
+  }
+
+  &_title {
+    color: white;
   }
 
   &_text {
     padding: 4%;
     font-size: $font-size-text;
+    font-style: $font-family-Lora;
   }
 
   &_submit{
-    
+    align-self: center;
   }
+}
+  .closeButton{
+    position: absolute;
+    top: 50%;
+    right: 7%;
+    transform: translateY(-50%);
+
+    &::before,
+    &::after{
+      content: '';
+      background-color: white;
+      height: 6px;
+      width: 28px;
+      position: absolute;
+    }
+    &::before {
+      transform: rotate(-45deg);
+      top: -4px;
+    }
+    &::after {
+      transform: rotate(45deg);
+      top: -4px;
+    }
 }
 </style>

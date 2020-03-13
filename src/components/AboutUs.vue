@@ -21,6 +21,7 @@ export default {
 <style scoped lang="scss">
 
 .about-us {
+  margin-bottom: 10%;
 
   &_title {
     text-align: center;
