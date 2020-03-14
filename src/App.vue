@@ -2,6 +2,7 @@
   <div id="app">
     <PageHeader/>
     <AboutUs/>
+    <OurTeam/>
     <PageFooter/>
   </div>
 </template>
@@ -9,6 +10,7 @@
 <script>
 import PageHeader from './components/PageHeader.vue';
 import AboutUs from './components/AboutUs.vue';
+import OurTeam from './components/OurTeam.vue';
 import PageFooter from './components/PageFooter.vue';
 
 export default {
@@ -16,6 +18,7 @@ export default {
   components: {
     PageHeader,
     AboutUs,
+    OurTeam,
     PageFooter,
   },
 };

@@ -1,6 +1,6 @@
 <template>
   <div class="about-us">
-    <h1 class="about-us_title">О нас</h1>
+    <h1 class="title-underlined-left">О нас</h1>
     <p class="about-us_text">
       Есть три основных способа зарабатывать на подкастах — это реклама в подкастах уже собравших
       свою аудиторию, подкасты, сделанные вместе с брендами и краудфандинг (когда аудитория так
@@ -22,23 +22,6 @@ export default {
 
 .about-us {
   margin-bottom: 10%;
-
-  &_title {
-    text-align: center;
-    position: relative;
-    margin-bottom: 5%;
-
-    &::before {
-      content: '';
-      position: absolute;
-      height: .75rem;
-      background-color: $colour-accent;
-      width: 60%;
-      border-radius: 1rem;
-      left: 0;
-      bottom: -1rem;
-    }
-  }
 
   &_text {
     width: 50%;
