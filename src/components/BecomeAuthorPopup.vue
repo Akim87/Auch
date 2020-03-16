@@ -1,7 +1,5 @@
 <template>
-  <transition name="popup">
-    <div class="popup_mask">
-      <div class="popup_wrapper">
+      <div class="popup_wrapper d-flex">
         <div class="popup_container">
           <div class="popup_header">
             <h1 class="popup_title">Хотите стать автором?</h1>
@@ -27,11 +25,9 @@
               <input type="text" class="popup_input" placeholder="Краткий ответ">
             </div>
             <baseButton class="popup_submit" buttonText="Отправить" @click="$emit('close')" />
-        </form>
+          </form>
         </div>
       </div>
-    </div>
-  </transition>
 </template>
 
 <script>
@@ -47,7 +43,7 @@ export default {
 
 <style scoped lang="scss">
 .popup {
-  &_mask {
+  &_wrapper {
     position: fixed;
     z-index: 9998;
     top: 0;
@@ -55,13 +51,7 @@ export default {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
-    display: table;
-    transition: opacity 0.3s ease;
-  }
-
-  &_wrapper {
-    display: table-cell;
-    vertical-align: middle;
+    align-items: center;
   }
 
   &_container {
@@ -69,11 +59,10 @@ export default {
     margin: 0 auto;
     background-color: #fff;
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
-    border-radius: 19px;
-    transition: all 0.3s ease;
     padding-bottom: 4%;
     overflow: auto;
     max-height: 100vh;
+    border-radius: 19px;
   }
 
   &_header {
@@ -145,4 +134,5 @@ export default {
   color: red;
   margin-left: .5rem;
 }
+
 </style>

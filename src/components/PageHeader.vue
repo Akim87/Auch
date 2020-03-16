@@ -15,7 +15,9 @@
         <li><a href="#" @click="showPopup = true">Стать автором</a></li>
       </ul>
     </nav>
-    <BecomeAuthorPopup v-if="showPopup" @close="showPopup = false"/>
+    <transition name="fade">
+      <BecomeAuthorPopup v-if="showPopup" @close="showPopup = false"/>
+    </transition>
   </div>
 </template>
 
@@ -49,6 +51,9 @@ export default {
     margin-bottom: 2rem;
     align-items: flex-end;
     font-size: 1.5rem;
+    & li:hover {
+      border-bottom: 3px solid black;
+    }
   }
 
   .menu-left {
@@ -57,6 +62,14 @@ export default {
 
   .menu-right {
     padding: 0 4% 0 2%;
+  }
+
+  .fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+  }
+
+  .fade-enter, .fade-leave-to {
+    opacity: 0;
   }
 
 </style>

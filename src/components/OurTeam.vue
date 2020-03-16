@@ -1,8 +1,8 @@
 <template>
   <div class="our-team">
     <h1 class="title-underlined-right">Наша команда</h1>
-    <transition>
-      <div class="our-team_group d-flex justify-between" v-if="isActive == 1">
+    <Hooper ref="carousel" :infiniteScroll="true">
+      <Slide class="our-team_group d-flex justify-around">
         <div class="our-team_item d-flex">
           <img class="our-team_member-photo" src="../assets/team-photo1.png" alt="photo">
           <div class="our-team_member-info d-flex flex-column">
@@ -31,8 +31,8 @@
             </div>
           </div>
         </div>
-      </div>
-      <div class="our-team_group d-flex justify-between" v-if="isActive == 2">
+      </Slide>
+      <Slide class="our-team_group d-flex justify-around">
         <div class="our-team_item d-flex">
           <img class="our-team_member-photo" src="../assets/team-photo3.png" alt="photo">
           <div class="our-team_member-info d-flex flex-column">
@@ -61,26 +61,30 @@
             </div>
           </div>
         </div>
-      </div>
-    </transition>
-    <button class="our-team_next-group"></button>
+      </Slide>
+    </Hooper>
+    <button class="our-team_next-group" @click.prevent="slideNext"></button>
   </div>
 </template>
 
 <script>
+import { Hooper, Slide } from 'hooper';
+import 'hooper/dist/hooper.css';
 import iconFacebook from './base/iconFacebook.vue';
 import iconInstagram from './base/iconInstagram.vue';
 
 export default {
   name: 'OurTeam',
   components: {
+    Hooper,
+    Slide,
     iconFacebook,
     iconInstagram,
   },
-  data() {
-    return {
-      isActive: 1,
-    };
+  methods: {
+    slideNext() {
+      this.$refs.carousel.slideNext();
+    },
   },
 };
 </script>
@@ -91,35 +95,35 @@ export default {
   margin-bottom: 10%;
   position: relative;
 
-  &_group {
-    width: 80%;
-    margin: 0 auto;
+  & .hooper {
+    height: auto;
   }
 
   &_next-group {
+    margin: 1%;
     position: absolute;
     top: 50%;
-    right: 7%;
+    right: 5%;
     &::after,
     &::before{
       content: '';
       background-color: $colour-accent;
-      height: 4px;
-      width: 40px;
+      height: 3px;
+      width: 20px;
       position: absolute;
     }
     &::before {
-      transform: rotate(-60deg);
-      top: 16px;
+      transform: rotate(-55deg);
+      top: 7px;
     }
     &::after {
-      transform: rotate(60deg);
-      top: -16px;
+      transform: rotate(55deg);
+      top: -7px;
     }
   }
 
   &_item {
-    margin-right: 4%;
+    margin: 0 4%;
   }
 
   &_member-photo {
