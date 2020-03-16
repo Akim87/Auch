@@ -1,3 +1,12 @@
+:root {
+  @media screen and (max-width: 1440px) {
+    font-size: 14px;
+  }
+  @media screen and (max-width: 1280px) {
+    font-size: 12px;
+  }
+}
+
 html,
 body {
   height: 100%;
@@ -26,6 +35,10 @@ body {
 
 .justify-center {
   justify-content: center;
+}
+
+.align-center {
+ align-items: center;
 }
 
 .title-underlined-left,

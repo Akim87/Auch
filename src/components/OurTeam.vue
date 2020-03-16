@@ -103,7 +103,7 @@ export default {
     margin: 1%;
     position: absolute;
     top: 50%;
-    right: 5%;
+    right: 3%;
     &::after,
     &::before{
       content: '';
