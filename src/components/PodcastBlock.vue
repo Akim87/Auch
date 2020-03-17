@@ -10,7 +10,7 @@
           никогда не работают и что не так с нашими взаимоотношениями с едой. А также рассказываем,
           почему мы сами отказались от диет и почему перешли на интуитивное питание.
         </p>
-        <audioPlayer :sources="audioSources" :loop="true"/>
+        <audioPlayer/>
       </div>
     </div>
     <div class="ext-services d-flex justify-center align-center">
@@ -38,13 +38,6 @@ export default {
   name: 'PodcastBlock',
   components: {
     audioPlayer,
-  },
-  data() {
-    return {
-      audioSources: [
-        'https://s1.muzter.net/files/mp3/artik__asti_-_devochka_tancui_muzter.net_128.mp3',
-      ],
-    };
   },
   props: {
     podcastImageUrl: String,
@@ -77,6 +70,7 @@ export default {
     position: relative;
     top: -10%;
     width: 22vw;
+    height: fit-content;
   }
   &_info {
     margin: 3% 0% 2% 2%;

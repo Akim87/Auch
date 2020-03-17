@@ -70,8 +70,8 @@
 <script>
 import { Hooper, Slide } from 'hooper';
 import 'hooper/dist/hooper.css';
-import iconFacebook from './base/iconFacebook.vue';
-import iconInstagram from './base/iconInstagram.vue';
+import iconFacebook from './icons/iconFacebook.vue';
+import iconInstagram from './icons/iconInstagram.vue';
 
 export default {
   name: 'OurTeam',

@@ -13,9 +13,9 @@
 </template>
 
 <script>
-import iconFacebook from './base/iconFacebook.vue';
-import iconInstagram from './base/iconInstagram.vue';
-import iconTelegram from './base/iconTelegram.vue';
+import iconFacebook from './icons/iconFacebook.vue';
+import iconInstagram from './icons/iconInstagram.vue';
+import iconTelegram from './icons/iconTelegram.vue';
 
 export default {
   name: 'PageFooter',
