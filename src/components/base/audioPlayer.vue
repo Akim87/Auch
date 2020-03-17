@@ -1,9 +1,10 @@
 <template>
-  <div>
-    <span>Total duration: {{ duration }} seconds</span>
-    <span>Progress: {{ (progress * 100) }}%</span>
+  <div class='player'>
+    <span>Total duration: {{ Math.floor(duration / 60 * 100) / 100 }} seconds</span>
+    <span>Progress: {{  Math.floor((duration / 60) * progress * 100 ) /100 }}</span>
     <button @click="togglePlayback">{{ playing ? 'Pause' : 'Play' }}</button>
     <button @click="stop">Stop</button>
+    <input type="range" id="volume" :min="progress" :max="duration">
   </div>
 </template>
 

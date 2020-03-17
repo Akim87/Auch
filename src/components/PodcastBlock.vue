@@ -11,7 +11,6 @@
           почему мы сами отказались от диет и почему перешли на интуитивное питание.
         </p>
         <audioPlayer :sources="audioSources" :loop="true"/>
-        <audioPlayer2/>
       </div>
     </div>
     <div class="ext-services d-flex justify-center align-center">
@@ -34,13 +33,11 @@
 
 <script>
 import audioPlayer from './base/audioPlayer.vue';
-import audioPlayer2 from './base/audioPlayer2.vue';
 
 export default {
   name: 'PodcastBlock',
   components: {
     audioPlayer,
-    audioPlayer2,
   },
   data() {
     return {
