@@ -12,4 +12,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+svg:hover path:nth-child(2) {
+  fill: $colour-accent;
+}
 </style>

@@ -68,9 +68,9 @@ export default {
 
   &_image {
     position: relative;
-    top: -10%;
-    width: 22vw;
-    height: fit-content;
+    top: -2rem;
+    width: 23vw;
+    align-self: baseline;
   }
   &_info {
     margin: 3% 0% 2% 2%;
@@ -85,6 +85,7 @@ export default {
   &_description {
     font-family: $font-family-Lora;
     font-size: $font-size-text;
+    margin-bottom: 3%;
   }
 }
 

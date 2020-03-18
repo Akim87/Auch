@@ -2,34 +2,33 @@
   <div class="player">
     <div class="player_header d-flex justify-between">
       <span v-if="currentTrack" class="player_track-title">{{ currentTrack.name }}</span>
-      <div class="player-controls d-flex justify-between">
+      <div class="player_controls d-flex justify-between">
         <button @click="prevTrack">
-          <iconPrevTrack/>
+          <iconPrevTrack />
         </button>
         <div class="d-flex align-center" @click="play">
           <button v-if="isTimerPlaying">
-            <iconPauseTrack/>
+            <iconPauseTrack />
           </button>
           <button v-else>
-            <iconPlayTrack/>
+            <iconPlayTrack />
           </button>
         </div>
         <button @click="nextTrack">
-          <iconNextTrack/>
+          <iconNextTrack />
         </button>
       </div>
     </div>
-    <div class="progress" ref="progress">
-      <div class="progress_bar" @click="clickProgress">
-        <div class="progress_current" :style="{ width : barWidth }">
-          <iconProgressBarSlider class="progress_slider"/>
+    <div class="player_progress" ref="progress">
+      <div class="player_progress-bar" @click="clickProgress">
+        <div class="player_progress-current" :style="{ width : barWidth }">
+          <iconProgressBarSlider v-if="duration" class="player_progress-slider" />
         </div>
       </div>
-      <div v-if="duration" class="progress__footer d-flex justify-between">
-        <span class="progress__time">{{ currentTime }}</span>
-        <span class="progress__duration">{{ duration }}</span>
+      <div class="player_progress-time d-flex justify-between">
+        <span>{{ currentTime }}</span>
+        <span>{{ duration }}</span>
       </div>
-
     </div>
   </div>
 </template>
@@ -42,7 +41,7 @@ import iconNextTrack from '../icons/iconNextTrack.vue';
 import iconProgressBarSlider from '../icons/iconProgressBarSlider.vue';
 
 export default {
-  name: 'audioPlayer2',
+  name: 'audioPlayer',
   components: {
     iconPrevTrack,
     iconPlayTrack,
@@ -61,16 +60,17 @@ export default {
       tracks: [
         {
           name: 'Нужна ли нам миссия? Разбираемся, кто мы и зачем',
-          source: 'https://raw.githubusercontent.com/muhammederdem/mini-player/master/mp3/1.mp3',
+          source:
+            'https://raw.githubusercontent.com/muhammederdem/mini-player/master/mp3/1.mp3',
         },
         {
           name: 'Everybody Knows',
-          source: 'https://raw.githubusercontent.com/muhammederdem/mini-player/master/mp3/2.mp3',
+          source:
+            'https://raw.githubusercontent.com/muhammederdem/mini-player/master/mp3/2.mp3',
         },
       ],
       currentTrack: null,
       currentTrackIndex: 0,
-      transitionName: null,
     };
   },
   methods: {
@@ -87,18 +87,12 @@ export default {
       const width = (100 / this.audio.duration) * this.audio.currentTime;
       this.barWidth = `${width}%`;
       this.circleLeft = `${width}%`;
-      let durmin = Math.floor(this.audio.duration / 60);
+      const durmin = Math.floor(this.audio.duration / 60);
       let dursec = Math.floor(this.audio.duration - durmin * 60);
-      let curmin = Math.floor(this.audio.currentTime / 60);
+      const curmin = Math.floor(this.audio.currentTime / 60);
       let cursec = Math.floor(this.audio.currentTime - curmin * 60);
-      if (durmin < 10) {
-        durmin = `0${durmin}`;
-      }
       if (dursec < 10) {
         dursec = `0${dursec}`;
-      }
-      if (curmin < 10) {
-        curmin = `0${curmin}`;
       }
       if (cursec < 10) {
         cursec = `0${cursec}`;
@@ -128,7 +122,6 @@ export default {
       this.updateBar(e.pageX);
     },
     prevTrack() {
-      this.transitionName = 'scale-in';
       this.isShowCover = false;
       if (this.currentTrackIndex > 0) {
         // eslint-disable-next-line no-plusplus
@@ -140,7 +133,6 @@ export default {
       this.resetPlayer();
     },
     nextTrack() {
-      this.transitionName = 'scale-out';
       this.isShowCover = false;
       if (this.currentTrackIndex < this.tracks.length - 1) {
         // eslint-disable-next-line no-plusplus
@@ -181,68 +173,62 @@ export default {
       vm.nextTrack();
       this.isTimerPlaying = true;
     };
-
-    // this is optional (for preload covers)
-    // eslint-disable-next-line no-plusplus
-    for (let index = 0; index < this.tracks.length; index++) {
-      const element = this.tracks[index];
-      const link = document.createElement('link');
-      link.rel = 'prefetch';
-      link.href = element.cover;
-      document.head.appendChild(link);
-    }
   },
 };
 </script>
 
 <style scoped lang="scss">
 .player {
-  background-color: #F8F6F3;
+  background-color: #f8f6f3;
   border: 5px solid $colour-accent;
   border-radius: 21px;
   padding: 1% 2%;
 
   &_header {
     margin-bottom: 1%;
-    min-height: 60px;
   }
 
   &_track-title {
     align-self: center;
     font-size: 1.5rem;
+    margin-right: 6%;
   }
 
-  &-controls {
-  min-width: 160px;
-  margin-right: 1%;
+  &_controls {
     & svg {
       vertical-align: middle;
     }
-  }
-}
-
-.progress_slider {
-  position: absolute;
-  top: 50%;
-  right: 0;
-  transform: translate(50%, -50%);
-}
-
-.progress_bar {
-  height: 1rem;
-  width: 100%;
-  cursor: pointer;
-  background-color: #EFCDAE;
-  display: inline-block;
-  border-radius: 9px;
-}
-
-.progress_current {
-  height: inherit;
-  background-color: $colour-accent;
-  border-radius: 9px;
-  position: relative;
-  max-width: 99%;
+    & > * {
+      margin-right: 1vw;
+    }
   }
 
+  &_progress-bar {
+    height: 1rem;
+    width: 100%;
+    cursor: pointer;
+    background-color: #efcdae;
+    display: inline-block;
+    border-radius: 9px;
+  }
+
+  &_progress-current {
+    height: inherit;
+    background-color: $colour-accent;
+    border-radius: 9px;
+    position: relative;
+    max-width: 98%;
+  }
+
+  &_progress-slider {
+    position: absolute;
+    top: 50%;
+    right: -7px;
+    transform: translate(50%, -50%);
+  }
+
+  &_progress-time {
+    font-size: 1.5rem;
+  }
+}
 </style>

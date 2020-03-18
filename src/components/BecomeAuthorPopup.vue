@@ -1,33 +1,33 @@
 <template>
-      <div class="popup_wrapper d-flex">
-        <div class="popup_container">
-          <div class="popup_header">
-            <h1 class="popup_title">Хотите стать автором?</h1>
-            <button class="popup_close" @click="$emit('close')"></button>
-          </div>
-          <p class="popup_text">
-            Подкасты — очень демократичное медиа. Чтобы начать записывать свой, достаточно телефона.
-            Например, есть программа и одновременно платформа Anchor, в ней можно сразу после записи
-            отредактировать звук и отправить на все платформы для подкастов. Главное, чтобы вам было
-            что сказать.
-          </p>
-          <form class="popup_form d-flex flex-column">
-            <div class="popup_form-item d-flex flex-column">
-              <label for="disabled" class="popup_label required">Имя</label>
-              <input type="text" class="popup_input" placeholder="Краткий ответ">
-            </div>
-            <div class="popup_form-item d-flex flex-column">
-              <label for="disabled" class="popup_label required">Адрес электронной почты</label>
-              <input type="text" class="popup_input" placeholder="Краткий ответ">
-            </div>
-            <div class="popup_form-item d-flex flex-column">
-              <label for="disabled" class="popup_label">Номер телефона</label>
-              <input type="text" class="popup_input" placeholder="Краткий ответ">
-            </div>
-            <baseButton class="popup_submit" buttonText="Отправить" @click="$emit('close')" />
-          </form>
-        </div>
+  <div class="popup_wrapper d-flex">
+    <div class="popup_container">
+      <div class="popup_header">
+        <h1 class="popup_title">Хотите стать автором?</h1>
+        <button class="popup_close" @click="$emit('close')"></button>
       </div>
+      <p class="popup_text">
+        Подкасты — очень демократичное медиа. Чтобы начать записывать свой, достаточно телефона.
+        Например, есть программа и одновременно платформа Anchor, в ней можно сразу после записи
+        отредактировать звук и отправить на все платформы для подкастов. Главное, чтобы вам было
+        что сказать.
+      </p>
+      <form class="popup_form d-flex flex-column">
+        <div class="popup_form-item d-flex flex-column">
+          <label for="disabled" class="popup_label required">Имя</label>
+          <input type="text" class="popup_input" placeholder="Краткий ответ" />
+        </div>
+        <div class="popup_form-item d-flex flex-column">
+          <label for="disabled" class="popup_label required">Адрес электронной почты</label>
+          <input type="text" class="popup_input" placeholder="Краткий ответ" />
+        </div>
+        <div class="popup_form-item d-flex flex-column">
+          <label for="disabled" class="popup_label">Номер телефона</label>
+          <input type="text" class="popup_input" placeholder="Краткий ответ" />
+        </div>
+        <baseButton class="popup_submit" buttonText="Отправить" @click="$emit('close')" />
+      </form>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -82,8 +82,8 @@ export default {
     transform: translateY(-50%);
 
     &::before,
-    &::after{
-      content: '';
+    &::after {
+      content: "";
       background-color: white;
       height: 6px;
       width: 28px;
@@ -97,6 +97,13 @@ export default {
       transform: rotate(45deg);
       top: -4px;
     }
+
+    &:hover {
+      &::before,
+      &::after {
+        background-color: black;
+      }
+    }
   }
 
   &_text {
@@ -106,7 +113,7 @@ export default {
   }
 
   &_form-item {
-    background-color: #FFF0E2;
+    background-color: #fff0e2;
     padding: 2% 4%;
     margin: 1% 0;
   }
@@ -130,9 +137,8 @@ export default {
 }
 
 .required::after {
-  content: '*';
+  content: "*";
   color: red;
-  margin-left: .5rem;
+  margin-left: 0.5rem;
 }
-
 </style>

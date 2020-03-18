@@ -1,0 +1,85 @@
+<template>
+  <div class="blog">
+    <h1 class="title-underlined-right">Блог</h1>
+    <div class="blog_container">
+      <blogItem
+        v-for="blog in blogs"
+        :img="blog.img"
+        :title="blog.title"
+        :text="blog.text"
+        :key="blog.id"
+        class="blog_item"
+      />
+    </div>
+  </div>
+</template>
+
+<script>
+import blogItem from './base/blogItem.vue';
+
+export default {
+  name: 'BlogBlock',
+  components: {
+    blogItem,
+  },
+  data() {
+    return {
+      blogs: [
+        {
+          id: 1,
+          img: '~@/assets/Rectangle 63.png',
+          title: 'Возвращение луи Си Кея',
+          text:
+            'Вундеркинд, талантливый математик, выпускник Гарварда Тед Качинский мог бы всю жизнь писать статьи, понятные лишь десяти его коллегам, и преподавать студентам матанализ. Вместо этого он провёл двадцать лет в лесной хижине, стал маньяком-анархо-примитивистом...',
+        },
+        {
+          id: 2,
+          img: '../../assets/Rectangle 74.png',
+          title: 'Время учёных',
+          text:
+            'Вундеркинд, талантливый математик, выпускник Гарварда Тед Качинский мог бы всю жизнь писать статьи, понятные лишь десяти его коллегам, и преподавать студентам матанализ. Вместо этого он провёл двадцать лет в лесной хижине, стал маньяком-анархо-примитивистом...',
+        },
+        {
+          id: 3,
+          img: '../../assets/Rectangle 75.png',
+          title: 'Мы сейчас комики для комиков',
+          text:
+            'Вундеркинд, талантливый математик, выпускник Гарварда Тед Качинский мог бы всю жизнь писать статьи, понятные лишь десяти его коллегам, и преподавать студентам матанализ. Вместо этого он провёл двадцать лет в лесной хижине, стал маньяком-анархо-примитивистом...',
+        },
+      ],
+    };
+  },
+};
+</script>
+
+<style scoped lang="scss">
+.blog {
+  width: 95%;
+  margin: 0 auto 10%;
+
+  &_container {
+    display: grid;
+    grid-template-areas:
+      "ver hor1"
+      "ver hor2";
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 1vw;
+  }
+}
+
+.blog_item:nth-child(1) {
+  grid-area: ver;
+  display: flex;
+  flex-direction: column;
+}
+
+.blog_item:nth-child(2) {
+  grid-area: hor1;
+}
+
+.blog_item:nth-child(3) {
+  grid-area: hor2;
+  flex-direction: row-reverse;
+}
+</style>

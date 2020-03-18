@@ -127,11 +127,12 @@ export default {
   }
 
   &_member-photo {
-    height: fit-content;
+    align-self: baseline;
+    width: 11vw;
   }
 
   &_member-info {
-    max-width: 390px;
+    width: 60%;
     margin-left: 4%;
   }
 
