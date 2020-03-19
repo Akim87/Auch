@@ -1,6 +1,6 @@
 <template>
   <div class="blog-item d-flex">
-    <div class="blog-item_img-holder">
+    <div class="blog-item_img-holder d-flex justify-center">
       <img class="blog-item_img" src='../../assets/Rectangle 63.png' alt='blog image'/>
     </div>
     <div class="blog-item_info">
@@ -25,14 +25,13 @@ export default {
 .blog-item {
   background-color: #F2E2D3;
   border-radius: 2rem;
+
   &_img-holder {
     margin: 1.5rem;
   }
   &_img {
     object-fit: contain;
-    width: 30vw;
-    margin: 0 auto;
-    display: block;
+    width: 27vw;
   }
   &_info {
     margin: 1.5rem;

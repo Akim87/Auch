@@ -54,7 +54,7 @@ export default {
 
 <style scoped lang="scss">
 .blog {
-  width: 95%;
+  width: 90%;
   margin: 0 auto 10%;
 
   &_container {

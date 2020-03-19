@@ -49,6 +49,7 @@ body {
   text-align: center;
   position: relative;
   margin-bottom: 5%;
+  line-height: 2.5rem;
 
   &::after {
     content: "";
@@ -72,4 +73,8 @@ body {
   &::after {
     right: 0;
   }
+}
+
+.hooper {
+  height: auto!important;
 }

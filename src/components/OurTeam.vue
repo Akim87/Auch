@@ -95,10 +95,6 @@ export default {
   margin-bottom: 10%;
   position: relative;
 
-  & .hooper {
-    height: auto;
-  }
-
   &_next-group {
     margin: 1%;
     position: absolute;
