@@ -18,7 +18,7 @@
       <a href="#">
         <img class="header_logo" src="~@/assets/Logo.png" alt="auch-logo" />
       </a>
-      <ul class="d-flex justify-between header_menu-left-block">
+      <ul class="d-flex justify-between header_menu-right-block">
         <li>
           <a href="#aboutUs">О нас</a>
         </li>
@@ -28,30 +28,19 @@
         <li>
           <a href="#contacts">Контакты</a>
         </li>
-        <li>
-          <a href="#" @click="showPopup = true">Стать автором</a>
+        <li >
+          <a href="#" @click="$emit('open')">Стать автором</a>
         </li>
       </ul>
     </nav>
-    <transition name="fade">
-      <BecomeAuthorPopup v-if="showPopup" @close="showPopup = false" />
-    </transition>
   </div>
 </template>
 
 <script>
-import BecomeAuthorPopup from './BecomeAuthorPopup.vue';
+
 
 export default {
   name: 'PageHeader',
-  components: {
-    BecomeAuthorPopup,
-  },
-  data() {
-    return {
-      showPopup: false,
-    };
-  },
 };
 </script>
 
@@ -62,7 +51,7 @@ export default {
     margin-bottom: 6%;
 
     &-left-block,
-    &-rigth-block {
+    &-right-block {
       max-width: 40%;
       width: 100%;
       border-bottom: 3px solid $colour-accent;
@@ -97,13 +86,4 @@ export default {
   }
 }
 
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s;
-}
-
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
-}
 </style>

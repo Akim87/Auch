@@ -51,7 +51,7 @@ export default {
 .decoration_title {
   background-color: $colour-accent;
   width: 40%;
-  font-size: 2.375rem;
+  font-size: 2.25rem;
   color: white;
   border-radius: 0 1rem 1rem 0;
   line-height: 4rem;
@@ -77,7 +77,7 @@ export default {
   }
 
   &_title {
-    font-size: 2.25rem;
+    font-size: 2rem;
     font-weight: bold;
     margin-bottom: 2%;
   }

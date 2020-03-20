@@ -49,7 +49,8 @@ body {
   text-align: center;
   position: relative;
   margin-bottom: 5%;
-  line-height: 2.5rem;
+  font-size: 2.5rem;
+  line-height: 2.25rem;
 
   &::after {
     content: "";
@@ -77,4 +78,15 @@ body {
 
 .hooper {
   height: auto!important;
+}
+
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }

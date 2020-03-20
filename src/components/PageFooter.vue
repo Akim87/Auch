@@ -7,7 +7,7 @@
       <iconTelegram class="socials-item"/>
     </div>
     <div class="support-project d-flex justify-center">
-      <a href="#" class="support-link">Хочешь поддержать проект?</a>
+      <a href="#" class="support-link" @click="$emit('open')">Хочешь поддержать проект?</a>
     </div>
   </div>
 </template>
@@ -31,6 +31,7 @@ export default {
 <style scoped lang="scss">
   .footer {
     border-top: 4px solid $colour-accent;
+    margin-top: 10%;
   }
 
   .socials {

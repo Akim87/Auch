@@ -1,7 +1,7 @@
 <template>
   <div class="blog-item d-flex">
     <div class="blog-item_img-holder d-flex justify-center">
-      <img class="blog-item_img" src='../../assets/Rectangle 63.png' alt='blog image'/>
+      <img class="blog-item_img" :src="require(`../../assets/${img}`)" alt='blog image'/>
     </div>
     <div class="blog-item_info">
       <h3 class="blog-item_title">{{ title }}</h3>
@@ -37,7 +37,7 @@ export default {
     margin: 1.5rem;
   }
   &_title {
-    font-size: 2.625rem;
+    font-size: 2rem;
     margin: 1.5rem 0;
     line-height: 3rem;
   }

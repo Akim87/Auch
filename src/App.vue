@@ -1,15 +1,25 @@
 <template>
   <div id="app">
-    <PageHeader  />
-    <PodcastBlock name='podcasts'/>
-    <div class="semi-columns-block d-flex justify-between">
-      <WhatIs name='whatsIsIt'/>
-      <PopularPodcasts name='popular'/>
-    </div>
-    <BlogBlock name='blog'/>
-    <AboutUs name='aboutUs'/>
-    <OurTeam name='team'/>
-    <PageFooter name='contacts'/>
+    <PageHeader @open="showBecomeAuthorPopup = true" />
+    <transition name="fade">
+      <main v-if="!showSupportProjectPopup">
+        <PodcastBlock name="podcasts" />
+        <div class="semi-columns-block d-flex justify-between">
+          <WhatIs name="whatsIsIt" />
+          <PopularPodcasts name="popular" />
+        </div>
+        <BlogBlock name="blog" />
+        <AboutUs name="aboutUs" />
+        <OurTeam name="team" />
+      </main>
+    </transition>
+    <transition name="fade">
+      <SupportProjectPopup v-if="showSupportProjectPopup" @close="showSupportProjectPopup = false"/>
+    </transition>
+    <PageFooter name="contacts" @open="showSupportProjectPopup = true" />
+    <transition name="fade">
+      <BecomeAuthorPopup v-if="showBecomeAuthorPopup" @close="showBecomeAuthorPopup = false" />
+    </transition>
   </div>
 </template>
 
@@ -22,6 +32,8 @@ import BlogBlock from './components/BlogBlock.vue';
 import AboutUs from './components/AboutUs.vue';
 import OurTeam from './components/OurTeam.vue';
 import PageFooter from './components/PageFooter.vue';
+import BecomeAuthorPopup from './components/BecomeAuthorPopup.vue';
+import SupportProjectPopup from './components/SupportProjectPopup.vue';
 
 export default {
   name: 'App',
@@ -34,6 +46,14 @@ export default {
     AboutUs,
     OurTeam,
     PageFooter,
+    BecomeAuthorPopup,
+    SupportProjectPopup,
+  },
+  data() {
+    return {
+      showBecomeAuthorPopup: false,
+      showSupportProjectPopup: false,
+    };
   },
 };
 </script>
@@ -49,10 +69,10 @@ export default {
 
 .semi-columns-block > * {
   &:nth-child(1) {
-  width: 40%;
+    width: 40%;
   }
   &:nth-child(2) {
-  width: 50%;
+    width: 50%;
   }
 }
 </style>

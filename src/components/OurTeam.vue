@@ -69,7 +69,6 @@
 
 <script>
 import { Hooper, Slide } from 'hooper';
-import 'hooper/dist/hooper.css';
 import iconFacebook from './icons/iconFacebook.vue';
 import iconInstagram from './icons/iconInstagram.vue';
 
@@ -92,7 +91,6 @@ export default {
 <style scoped lang="scss">
 
 .our-team {
-  margin-bottom: 10%;
   position: relative;
 
   &_next-group {

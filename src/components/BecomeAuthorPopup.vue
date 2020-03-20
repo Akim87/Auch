@@ -1,30 +1,30 @@
 <template>
-  <div class="popup_wrapper d-flex">
-    <div class="popup_container">
-      <div class="popup_header">
-        <h1 class="popup_title">Хотите стать автором?</h1>
-        <button class="popup_close" @click="$emit('close')"></button>
+  <div class="author-popup_wrapper d-flex">
+    <div class="author-popup_container">
+      <div class="author-popup_header">
+        <h1 class="author-popup_title">Хотите стать автором?</h1>
+        <button class="author-popup_close" @click="$emit('close')"></button>
       </div>
-      <p class="popup_text">
+      <p class="author-popup_text">
         Подкасты — очень демократичное медиа. Чтобы начать записывать свой, достаточно телефона.
         Например, есть программа и одновременно платформа Anchor, в ней можно сразу после записи
         отредактировать звук и отправить на все платформы для подкастов. Главное, чтобы вам было
         что сказать.
       </p>
-      <form class="popup_form d-flex flex-column">
-        <div class="popup_form-item d-flex flex-column">
-          <label for="disabled" class="popup_label required">Имя</label>
-          <input type="text" class="popup_input" placeholder="Краткий ответ" />
+      <form class="author-popup_form d-flex flex-column">
+        <div class="author-popup_form-item d-flex flex-column">
+          <label for="disabled" class="author-popup_label required">Имя</label>
+          <input type="text" class="author-popup_input" placeholder="Краткий ответ" />
         </div>
-        <div class="popup_form-item d-flex flex-column">
-          <label for="disabled" class="popup_label required">Адрес электронной почты</label>
-          <input type="text" class="popup_input" placeholder="Краткий ответ" />
+        <div class="author-popup_form-item d-flex flex-column">
+          <label for="disabled" class="author-popup_label required">Адрес электронной почты</label>
+          <input type="text" class="author-popup_input" placeholder="Краткий ответ" />
         </div>
-        <div class="popup_form-item d-flex flex-column">
-          <label for="disabled" class="popup_label">Номер телефона</label>
-          <input type="text" class="popup_input" placeholder="Краткий ответ" />
+        <div class="author-popup_form-item d-flex flex-column">
+          <label for="disabled" class="author-popup_label">Номер телефона</label>
+          <input type="text" class="author-popup_input" placeholder="Краткий ответ" />
         </div>
-        <baseButton class="popup_submit" buttonText="Отправить" @click="$emit('close')" />
+        <baseButton class="author-popup_submit" buttonText="Отправить" @click.prevent="$emit('close')" />
       </form>
     </div>
   </div>
@@ -42,7 +42,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.popup {
+.author-popup {
   &_wrapper {
     position: fixed;
     z-index: 9998;
@@ -59,7 +59,6 @@ export default {
     margin: 0 auto;
     background-color: #fff;
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
-    padding-bottom: 4%;
     overflow: auto;
     max-height: 100vh;
     border-radius: 19px;
@@ -67,7 +66,7 @@ export default {
 
   &_header {
     background-color: $colour-accent;
-    padding: 4%;
+    padding: 3% 4%;
     position: relative;
   }
 
@@ -107,20 +106,20 @@ export default {
   }
 
   &_text {
-    padding: 4%;
-    font-size: $font-size-text;
+    padding: 2% 4%;
+    font-size: 1.375rem;
     font-style: $font-family-Lora;
   }
 
   &_form-item {
     background-color: #fff0e2;
-    padding: 2% 4%;
+    padding: 1% 4%;
     margin: 1% 0;
   }
 
   &_label {
-    font-size: 1.875rem;
-    margin-bottom: 2%;
+    font-size: 1.5rem;
+    margin-bottom: 1%;
   }
 
   &_input {
@@ -131,7 +130,7 @@ export default {
   }
 
   &_submit {
-    margin-top: 6%;
+    margin: 2% 0 3%;
     align-self: center;
   }
 }
