@@ -1,7 +1,7 @@
 <template>
   <div class="our-team">
     <h1 class="title-underlined-right">Наша команда</h1>
-    <Hooper ref="carousel" :infiniteScroll="true">
+    <Hooper ref="carousel" :infiniteScroll="true" :itemsToShow="$mq === 'lg' ? 1 : 1">
       <Slide class="our-team_group d-flex justify-around">
         <div class="our-team_item d-flex">
           <img class="our-team_member-photo" src="../assets/team-photo1.png" alt="photo">
@@ -137,8 +137,9 @@ export default {
   }
 
   &_member-contacts-item {
-    width: 50px;
-    margin-right: 4%;
+    width: 11%;
+    margin: 4% 4% 0 0;
+    height: auto;
   }
 
   &_member-charge {

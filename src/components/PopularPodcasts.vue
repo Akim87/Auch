@@ -1,15 +1,15 @@
 <template>
   <div class="popular-podcasts">
     <h1 class="title-underlined-right">Популярные</h1>
-    <Hooper class="popular-podcasts_slider" ref="carousel" :infiniteScroll="true" :itemsToShow="2.5" :autoPlay="true">
+    <Hooper class="popular-podcasts_slider" ref="carousel" :settings="hooperSettings">
       <Slide>
-        <img class="popular-podcasts_img" src="../assets/blog1.png" alt="">
+        <img class="popular-podcasts_img" src="../assets/blog1.png" alt />
       </Slide>
       <Slide>
-        <img class="popular-podcasts_img" src="../assets/blog2.png" alt="">
+        <img class="popular-podcasts_img" src="../assets/blog2.png" alt />
       </Slide>
       <Slide>
-        <img class="popular-podcasts_img" src="../assets/blog3.png" alt="">
+        <img class="popular-podcasts_img" src="../assets/blog3.png" alt />
       </Slide>
     </Hooper>
   </div>
@@ -27,6 +27,7 @@ export default {
   },
   data() {
     return {
+      sliderMode: 'desk',
       blogs: [
         {
           id: 1,
@@ -41,31 +42,42 @@ export default {
           img: '../assets/Rectangle 75.png',
         },
       ],
+      hooperSettings: {
+        itemsToShow: 1.5,
+        centerMode: true,
+        infiniteScroll: true,
+        autoPlay: true,
+        breakpoints: {
+          640: {
+            centerMode: false,
+            itemsToShow: 2.5,
+          },
+        },
+      },
     };
   },
 };
 </script>
 
 <style scoped lang="scss">
-  .popular-podcasts {
-    & .title-underlined-right::after {
+.popular-podcasts {
+  & .title-underlined-right::after {
     width: 70%;
-    }
-    &_slider {
-      position: relative;
-      &::after {
-        content: "";
-        width: 20%;
-        height: 100%;
-        position: absolute;
-        top: 0;
-        left: 80%;
-        background: linear-gradient(to right, hsla(0, 0%, 100%, 0), #ffffff 100%);
-      }
-    }
-    &_img {
-      width: 95%;
-    }
-
   }
+  &_slider {
+    position: relative;
+    &::after {
+      content: "";
+      width: 20%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 80%;
+      background: linear-gradient(to right, hsla(0, 0%, 100%, 0), #ffffff 100%);
+    }
+  }
+  &_img {
+    width: 95%;
+  }
+}
 </style>

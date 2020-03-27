@@ -1,5 +1,6 @@
 <template>
   <div class="player">
+    <span class="player_date">15 апреля 2019</span>
     <div class="player_header d-flex justify-between">
       <span v-if="currentTrack" class="player_track-title">{{ currentTrack.name }}</span>
       <div class="player_controls d-flex justify-between">
@@ -21,15 +22,25 @@
     </div>
     <div class="player_progress" ref="progress">
       <div class="player_progress-bar" @click="clickProgress">
-        <div class="player_progress-current" :style="{ width : barWidth }">
+        <div class="player_progress-current" :style="{ width: barWidth }">
           <iconProgressBarSlider v-if="duration" class="player_progress-slider" />
         </div>
       </div>
       <div class="player_progress-time d-flex justify-between">
         <span>{{ currentTime }}</span>
+        <button class="player_dropdown-button d-flex" @click="showInfo = !showInfo" v-bind:class="{ dropdownActive: showInfo }">
+          <dropDownArrow/>
+        </button>
         <span>{{ duration }}</span>
       </div>
     </div>
+    <p class="player_info" v-if="showInfo">
+      В предыдущем эпизоде мы обнаружили, что наши коллеги выгорают из-за неразберихи в процессах. У
+      нас нет чётких правил и регламентов: кто, что и как делает. Нужна ли нам иерархия? Какую
+      систему управления выбрать? Что такое холакратия и аджайл? Как из хаоса выстроить порядок? Обо
+      всём этом мы расспросили руководителя направления эффективности внутренних процессов банка
+      «Точка» Дарью Боровикову и Андрея Леушева, основателя компании...
+    </p>
   </div>
 </template>
 
@@ -39,6 +50,7 @@ import iconPlayTrack from '../icons/iconPlayTrack.vue';
 import iconPauseTrack from '../icons/iconPauseTrack.vue';
 import iconNextTrack from '../icons/iconNextTrack.vue';
 import iconProgressBarSlider from '../icons/iconProgressBarSlider.vue';
+import dropDownArrow from './dropDownArrow.vue';
 
 export default {
   name: 'audioPlayer',
@@ -48,6 +60,7 @@ export default {
     iconPauseTrack,
     iconNextTrack,
     iconProgressBarSlider,
+    dropDownArrow,
   },
   data() {
     return {
@@ -57,16 +70,15 @@ export default {
       duration: null,
       currentTime: null,
       isTimerPlaying: false,
+      showInfo: false,
       tracks: [
         {
           name: 'Нужна ли нам миссия? Разбираемся, кто мы и зачем',
-          source:
-            'https://raw.githubusercontent.com/muhammederdem/mini-player/master/mp3/1.mp3',
+          source: 'https://raw.githubusercontent.com/muhammederdem/mini-player/master/mp3/1.mp3',
         },
         {
           name: 'Everybody Knows',
-          source:
-            'https://raw.githubusercontent.com/muhammederdem/mini-player/master/mp3/2.mp3',
+          source: 'https://raw.githubusercontent.com/muhammederdem/mini-player/master/mp3/2.mp3',
         },
       ],
       currentTrack: null,
@@ -178,11 +190,23 @@ export default {
 </script>
 
 <style scoped lang="scss">
+svg {
+  width: 3vw;
+}
+
 .player {
   background-color: #f8f6f3;
-  border: 5px solid $colour-accent;
-  border-radius: 21px;
-  padding: 1% 2%;
+  border: .1875rem solid $colour-accent;
+  border-radius: 1.5rem;
+  padding: 2% 3%;
+  position: relative;
+
+  &_date {
+    position: absolute;
+    top: -3rem;
+    right: 2%;
+    font-size: 1.375rem;
+  }
 
   &_header {
     margin-bottom: 1%;
@@ -190,7 +214,7 @@ export default {
 
   &_track-title {
     align-self: center;
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     margin-right: 6%;
   }
 
@@ -228,7 +252,18 @@ export default {
   }
 
   &_progress-time {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
+    margin-top: 2%;
+  }
+
+  &_dropdown-button {
+    transition: ease-out 0.2s;
+    width: 2%;
+  }
+
+  &_info {
+    font-size: $font-size-text;
+    margin-top: 2%;
   }
 }
 </style>

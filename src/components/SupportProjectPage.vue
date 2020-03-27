@@ -1,29 +1,29 @@
 <template>
-  <div class="support-popup d-flex flex-column">
-    <button class="support-popup_close" @click="$emit('close')">свернуть</button>
-    <div class="support-popup_info">
-      <p class="support-popup_text">
+  <div class="support-page d-flex flex-column">
+    <router-link to="/" class="support-page_close">свернуть</router-link>
+    <div class="support-page_info">
+      <p class="support-page_text">
         Если вам нравится слушать подкасты и вам хочется поддержать развитие этого проекта, это
         можно сделать следующими способами:
       </p>
-      <h1 class="support-popup_title">Рассказать о подкасте друзьям</h1>
-      <p class="support-popup_text">
+      <h1 class="support-page_title">Рассказать о подкасте друзьям</h1>
+      <p class="support-page_text">
         Поделитесь информацией про подкаст в своих социальных сетях. Если вы хотите пошерить ссылку,
         то можно оставить ссылку на сайт подкаста http://podcastvremyaperemen.ru или на ссылку для
         подписки c телефона: https://pod.link/vremyaperemen. Не забудьте про хештег
         #подкаствремяперемен
       </p>
-      <h1 class="support-popup_title">Поддержать деньгами</h1>
-      <p class="support-popup_text">
+      <h1 class="support-page_title">Поддержать деньгами</h1>
+      <p class="support-page_text">
         Если вы хотите сказать проекту спасибо, то у меня есть страничка на Патреоне. В любой момент
         эту поддержку можно приостановить или изменить сумму. О том, что такое Патреон можно
         посмотреть в видео на странице самого Патреона.
       </p>
-      <p class="support-popup_text">
+      <p class="support-page_text">
         Такая поддержка помогает мне развиваться профессионально, оплачивать хостинговые сервисы,
         оборудование для записи подкастов, а также возможность больше времени уделять проекту.
       </p>
-      <baseButton buttonText="Поддержать" @click.prevent="$emit('close')" />
+      <baseButton buttonText="Поддержать"/>
     </div>
   </div>
 </template>
@@ -32,7 +32,7 @@
 import baseButton from './base/baseButton.vue';
 
 export default {
-  name: 'SupportProjectPopup',
+  name: 'SupportProjectPage',
   components: {
     baseButton,
   },
@@ -40,19 +40,18 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.support-popup {
+.support-page {
   &_close {
     width: 15%;
     align-self: flex-end;
-    border-top: 3px solid $colour-accent;
-    border-bottom: 3px solid $colour-accent;
-    border-left: 3px solid $colour-accent;
+    border: .1875rem solid $colour-accent;
+    border-right: none;
     border-radius: 1rem 0 0 1rem;
     font-size: 1.5rem;
     text-align: left;
     padding: 0 2%;
     line-height: 3rem;
-    margin-bottom: 1%;;
+    margin-bottom: 1%;
   }
   &_info {
     width: 65%;

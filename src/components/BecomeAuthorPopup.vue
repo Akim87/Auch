@@ -51,17 +51,17 @@ export default {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
-    align-items: center;
+    align-items: end;
   }
 
   &_container {
     width: 65%;
-    margin: 0 auto;
+    margin: 1% auto 0;
     background-color: #fff;
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
     overflow: auto;
     max-height: 100vh;
-    border-radius: 19px;
+    border-radius: 1.25rem;
   }
 
   &_header {
@@ -84,8 +84,8 @@ export default {
     &::after {
       content: "";
       background-color: white;
-      height: 6px;
-      width: 28px;
+      height: .375rem;
+      width: 2rem;
       position: absolute;
     }
     &::before {

@@ -22,6 +22,11 @@ button {
 
 input {
   outline: none;
+  &:focus {
+    &::placeholder {
+      color: transparent;
+    }
+  }
 }
 
 .hooper:focus {

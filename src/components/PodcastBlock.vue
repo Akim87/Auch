@@ -2,9 +2,13 @@
   <div class="podcast d-flex flex-column">
     <span class="decoration_title">подкаст</span>
     <div class="podcast_block d-flex">
-      <img class="podcast_image" src="../assets/cover1.png" alt="podcast image" />
+      <router-link to="podcast">
+        <img class="podcast_image" src="../assets/cover1.png" alt="podcast image" />
+      </router-link>
       <div class="podcast_info">
-        <h2 class="podcast_title">65 Интуитивное питание: почему диеты не работают</h2>
+        <router-link to="podcast">
+          <h2 class="podcast_title">65 Интуитивное питание: почему диеты не работают</h2>
+          </router-link>
         <p class="podcast_description">
           В этом выпуске мы говорим о диетах и желании похудеть. Объясняем о том, почему диеты
           никогда не работают и что не так с нашими взаимоотношениями с едой. А также рассказываем,
@@ -60,7 +64,7 @@ export default {
 }
 
 .podcast {
-  margin-bottom: 4%;
+  margin-bottom: 2%;
 
   &_block {
     margin: 0 4%;
@@ -71,6 +75,10 @@ export default {
     top: -2rem;
     width: 23vw;
     align-self: baseline;
+    transition: ease-out 0.2s;
+    &:hover {
+      transform: scale(1.1);
+    }
   }
   &_info {
     margin: 3% 0% 2% 2%;
@@ -80,18 +88,21 @@ export default {
     font-size: 2rem;
     font-weight: bold;
     margin-bottom: 2%;
+    &:hover {
+      color: $colour-accent;
+    }
   }
 
   &_description {
     font-family: $font-family-Lora;
     font-size: $font-size-text;
-    margin-bottom: 3%;
+    margin-bottom: 5%;
   }
 }
 
 .ext-services {
-  border-top: 3px solid $colour-accent;
-  border-bottom: 3px solid $colour-accent;
+  border-top: .1875rem solid $colour-accent;
+  border-bottom: .1875rem solid $colour-accent;
   padding: 0.5% 0;
   & > * {
     margin-right: 3%;
@@ -101,6 +112,7 @@ export default {
   }
   & img {
     vertical-align: middle;
+    width: 7vw;
     filter: grayscale(1);
     &:hover {
       filter: none;

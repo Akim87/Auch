@@ -54,32 +54,32 @@ export default {
 
 <style scoped lang="scss">
 .blog {
-  width: 90%;
-  margin: 0 auto 10%;
 
   &_container {
     display: grid;
     grid-template-areas:
-      "ver hor1"
-      "ver hor2";
+      "col row1"
+      "col row2";
     grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr 2fr;
     grid-gap: 1vw;
+    width: 90%;
+    margin: 0 auto 10%;
   }
 }
 
 .blog_item:nth-child(1) {
-  grid-area: ver;
+  grid-area: col;
   display: flex;
   flex-direction: column;
 }
 
 .blog_item:nth-child(2) {
-  grid-area: hor1;
+  grid-area: row1;
   flex-direction: row-reverse;
 }
 
 .blog_item:nth-child(3) {
-  grid-area: hor2;
+  grid-area: row2;
 }
 </style>

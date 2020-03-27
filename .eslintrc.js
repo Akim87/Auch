@@ -16,4 +16,11 @@ module.exports = {
     "linebreak-style": 0,
     'max-len': 0
   },
+  settings: {
+    "import/resolver": {
+      "node": {
+        "paths": ["src"]
+      }
+    }
+  }
 };

@@ -8,12 +8,21 @@
   @media screen and (max-width: 1280px) {
     font-size: 10px;
   }
+  @media screen and (max-width: 1080px) {
+    font-size: 8px;
+  }
+  @media screen and (max-width: 850px) {
+    font-size: 6px;
+  }
+
 }
+
 
 html,
 body {
   height: 100%;
   width: 100%;
+  font-family: $font-family-IstokWeb;
 }
 
 * {
@@ -76,17 +85,23 @@ body {
   }
 }
 
+.dropdownActive {
+  transform: scale(1, -1);
+}
+
 .hooper {
   height: auto!important;
 }
 
 
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s;
+.fade-enter-active {
+  transition: all .5s ease;
 }
 
-.fade-enter,
-.fade-leave-to {
+.fade-leave-active {
+  transition: all .5s ease;
+}
+
+.fade-enter, .fade-leave-to {
   opacity: 0;
 }

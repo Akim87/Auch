@@ -17,7 +17,6 @@ export default {
 
 <style scoped lang="scss">
 .what-is {
-  margin-bottom: 10%;
   & .title-underlined-left::after {
     width: 100%;
   }
