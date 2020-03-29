@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <PageHeader @open="showBecomeAuthorPopup = true" v-if="$mq === 'lg'"/>
-    <router-view class="main"/>
-    <PageFooter id="contacts"/>
+    <PageHeader id="header" @open="showBecomeAuthorPopup = true" />
+    <router-view class="main" />
+    <PageFooter id="contacts" />
     <transition name="fade">
       <BecomeAuthorPopup v-if="showBecomeAuthorPopup" @close="showBecomeAuthorPopup = false" />
     </transition>
@@ -40,15 +40,18 @@ export default {
 </script>
 
 <style lang="scss">
-  #app {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-  }
+#app {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
 
-  .main {
-    flex-grow: 1;
-    justify-content: center;
-    margin-top: 15%;
+.main {
+  flex-grow: 1;
+  justify-content: center;
+  margin-top: 13%;
+  @media screen and (max-width: $mq-mob) {
+    margin-top: 20%;
   }
+}
 </style>

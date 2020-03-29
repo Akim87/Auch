@@ -242,6 +242,7 @@ export default {
   & img {
     vertical-align: middle;
     width: 7vw;
+    transition: all 1s ease;
     filter: grayscale(1);
     &:hover {
       filter: none;

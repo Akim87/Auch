@@ -1,5 +1,5 @@
 <template>
-  <div class="author-popup_wrapper d-flex">
+  <div class="author-popup_wrapper d-flex" @click.self="$emit('close')">
     <div class="author-popup_container">
       <div class="author-popup_header">
         <h1 class="author-popup_title">Хотите стать автором?</h1>
@@ -51,17 +51,21 @@ export default {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
-    align-items: end;
+    align-items: center;
   }
 
   &_container {
     width: 65%;
-    margin: 1% auto 0;
     background-color: #fff;
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
     overflow: auto;
-    max-height: 100vh;
     border-radius: 1.25rem;
+    max-height: 100vh;
+    transform: translateX(25%);
+    @media screen and (max-width: $mq-mob) {
+      width: 90%;
+      transform: translate(5%, -25%);
+  }
   }
 
   &_header {

@@ -12,7 +12,12 @@ export default {
 </script>
 
 <style scoped lang="scss">
-svg:hover rect {
-  fill: black;
+svg {
+  & rect{
+    transition: all 0.5s ease;
+  }
+  &:hover rect {
+    fill: black;
+  }
 }
 </style>

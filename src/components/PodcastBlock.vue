@@ -14,8 +14,8 @@
           никогда не работают и что не так с нашими взаимоотношениями с едой. А также рассказываем,
           почему мы сами отказались от диет и почему перешли на интуитивное питание.
         </p>
-        <audioPlayer/>
       </div>
+      <audioPlayer class="podcast_player"/>
     </div>
     <div class="ext-services d-flex justify-center align-center">
       <span>Слушайте в:</span>
@@ -61,13 +61,31 @@ export default {
   line-height: 4rem;
   text-align: end;
   padding-right: 2%;
+  @media screen and (max-width: $mq-mob) {
+      width: 50%;
+    }
 }
 
 .podcast {
   margin-bottom: 2%;
 
   &_block {
-    margin: 0 4%;
+    margin: 0 4% 2%;
+    display: grid;
+    grid-template-areas:
+      "pic info"
+      "pic play";
+    grid-template-rows: auto auto;
+    grid-template-columns: auto auto;
+    grid-gap: 2vw;
+    @media screen and (max-width: $mq-mob) {
+      grid-template-areas:
+      "pic info"
+      "play play";
+    }
+    & > a {
+      grid-area: pic;
+    }
   }
 
   &_image {
@@ -81,13 +99,14 @@ export default {
     }
   }
   &_info {
-    margin: 3% 0% 2% 2%;
+    grid-area: info;
   }
 
   &_title {
     font-size: 2rem;
     font-weight: bold;
-    margin-bottom: 2%;
+    margin: 4% 0 2%;
+    transition: all 0.5s ease;
     &:hover {
       color: $colour-accent;
     }
@@ -96,7 +115,11 @@ export default {
   &_description {
     font-family: $font-family-Lora;
     font-size: $font-size-text;
-    margin-bottom: 5%;
+    margin-bottom: 1%;
+  }
+
+  &_player {
+    grid-area: play;
   }
 }
 
@@ -113,6 +136,7 @@ export default {
   & img {
     vertical-align: middle;
     width: 7vw;
+    transition: all 1s ease;
     filter: grayscale(1);
     &:hover {
       filter: none;

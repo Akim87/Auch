@@ -89,7 +89,7 @@
         </p>
       </article>
     </div>
-    <div class="blog_aside d-flex flex-column">
+    <div class="blog_aside d-flex flex-column justify-between">
       <div class="blog_podcast d-flex flex-column">
         <span class="decoration_title">подкаст</span>
         <div class="blog_podcast-cover">
@@ -198,7 +198,6 @@ export default {
   }
   &_aside {
     grid-area: aside;
-    justify-content: space-around;
   }
   &_podcast {
     &-cover {

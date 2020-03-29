@@ -27,11 +27,11 @@
         </div>
       </div>
       <div class="player_progress-time d-flex justify-between">
-        <span>{{ currentTime }}</span>
+        <span class="player_progress-time">{{ currentTime }}</span>
         <button class="player_dropdown-button d-flex" @click="showInfo = !showInfo" v-bind:class="{ dropdownActive: showInfo }">
           <dropDownArrow/>
         </button>
-        <span>{{ duration }}</span>
+        <span class="player_progress-time">{{ duration }}</span>
       </div>
     </div>
     <p class="player_info" v-if="showInfo">
@@ -115,7 +115,7 @@ export default {
     updateBar(x) {
       const { progress } = this.$refs;
       const maxduration = this.audio.duration;
-      const position = x - progress.offsetLeft;
+      const position = x;
       let percentage = (100 * position) / progress.offsetWidth;
       if (percentage > 100) {
         percentage = 100;
@@ -131,7 +131,8 @@ export default {
     clickProgress(e) {
       this.isTimerPlaying = true;
       this.audio.pause();
-      this.updateBar(e.pageX);
+      this.updateBar(e.offsetX);
+      console.log(e.offsetX);
     },
     prevTrack() {
       this.isShowCover = false;
@@ -196,10 +197,12 @@ svg {
 
 .player {
   background-color: #f8f6f3;
-  border: .1875rem solid $colour-accent;
-  border-radius: 1.5rem;
+  border: .25rem solid $colour-accent;
+  border-radius: 2rem;
   padding: 2% 3%;
   position: relative;
+  transition: all 0.5s linear;
+  max-height: 500px;
 
   &_date {
     position: absolute;
@@ -221,6 +224,7 @@ svg {
   &_controls {
     & svg {
       vertical-align: middle;
+      height: auto;
     }
     & > * {
       margin-right: 1vw;
@@ -241,14 +245,14 @@ svg {
     background-color: $colour-accent;
     border-radius: 9px;
     position: relative;
-    max-width: 98%;
   }
 
   &_progress-slider {
     position: absolute;
     top: 50%;
-    right: -7px;
+    right: 0;
     transform: translate(50%, -50%);
+    width: 1.5vw;
   }
 
   &_progress-time {

@@ -21,6 +21,6 @@ module.exports = {
       "node": {
         "paths": ["src"]
       }
-    }
+    },
   }
 };
