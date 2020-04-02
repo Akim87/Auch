@@ -52,10 +52,16 @@ export default {
     padding: 0 2%;
     line-height: 3rem;
     margin-bottom: 1%;
+    @media screen and (max-width: $mq-mob) {
+    width: 20%
+  }
   }
   &_info {
     width: 65%;
     margin: 0 auto;
+    @media screen and (max-width: $mq-mob) {
+    width: 80%
+  }
   }
   &_text {
     font-size: $font-size-text;

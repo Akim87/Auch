@@ -12,8 +12,7 @@ export default {
 <style scoped lang="scss">
   span {
     position: relative;
-    width: 100%;
-    transform: translateX(-15%);
+    width: 1rem;
     &::after,
     &::before{
       content: '';

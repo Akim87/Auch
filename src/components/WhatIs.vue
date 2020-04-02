@@ -19,11 +19,17 @@ export default {
 .what-is {
   & .title-underlined-left::after {
     width: 100%;
+    @media screen and (max-width: $mq-mob) {
+      width: 70%;
+    }
   }
   &_text {
     width: 70%;
     margin: 10% auto 0;
     font-size: $font-size-text;
+    @media screen and (max-width: $mq-mob) {
+      width: 90%;
+    }
   }
 }
 </style>

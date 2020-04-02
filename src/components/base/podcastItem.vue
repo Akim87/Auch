@@ -2,8 +2,8 @@
   <div class="podcast d-flex flex-column">
     <span class="decoration_title">подкаст</span>
     <div class="podcast_block d-flex">
-      <router-link to="podcast">
-        <img class="podcast_image" src="../assets/cover1.png" alt="podcast image" />
+      <router-link class="podcast_link" to="podcast">
+        <img class="podcast_image" src="../../assets/cover1.png" alt="podcast image" />
       </router-link>
       <div class="podcast_info">
         <router-link to="podcast">
@@ -20,23 +20,23 @@
     <div class="ext-services d-flex justify-center align-center">
       <span>Слушайте в:</span>
       <a href="#">
-        <img src="../assets/Castbox_logo 1.png" alt="service-logo" />
+        <img src="../../assets/Castbox_logo 1.png" alt="service-logo" />
       </a>
       <a href="#">
-        <img src="../assets/google-podcasts-logo 1.png" alt="service-logo" />
+        <img src="../../assets/google-podcasts-logo 1.png" alt="service-logo" />
       </a>
       <a href="#">
-        <img src="../assets/PngItem_1884034 1.png" alt="service-logo" />
+        <img src="../../assets/PngItem_1884034 1.png" alt="service-logo" />
       </a>
       <a href="#">
-        <img src="../assets/Spotify_Logo_CMYK_Green 1.png" alt="service-logo" />
+        <img src="../../assets/Spotify_Logo_CMYK_Green 1.png" alt="service-logo" />
       </a>
     </div>
   </div>
 </template>
 
 <script>
-import audioPlayer from './base/audioPlayer.vue';
+import audioPlayer from './audioPlayer.vue';
 
 export default {
   name: 'PodcastBlock',
@@ -86,6 +86,10 @@ export default {
     & > a {
       grid-area: pic;
     }
+  }
+
+  &_link {
+    height: fit-content;
   }
 
   &_image {

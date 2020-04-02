@@ -111,7 +111,7 @@ export default {
 
   &_text {
     padding: 2% 4%;
-    font-size: 1.375rem;
+    font-size: $font-size-text;
     font-style: $font-family-Lora;
   }
 
@@ -130,7 +130,7 @@ export default {
     border: none;
     border-bottom: 1px dashed #414141;
     background-color: inherit;
-    font-size: 1.375rem;
+    font-size: $font-size-text;
   }
 
   &_submit {

@@ -19,7 +19,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
 .about-us {
   margin-bottom: 10%;
 
@@ -28,7 +27,9 @@ export default {
     margin: 0 auto;
     font-family: $font-family-Lora;
     font-size: $font-size-text;
+    @media screen and (max-width: $mq-mob) {
+      width: 90%;
+    }
   }
 }
-
 </style>

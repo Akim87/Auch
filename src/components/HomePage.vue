@@ -1,7 +1,10 @@
 <template>
-  <main id="podcasts">
-    <PodcastBlock />
-    <PodcastBlock />
+  <main>
+    <div id="podcasts" class="podcasts_block">
+      <podcastItem />
+      <podcastItem />
+      <button class="show-more">Показать больше<dropDownArrow class="show-more_button" /></button>
+    </div>
     <div class="semi-columns-block d-flex justify-between">
       <WhatIs id="whatsIsIt" />
       <PopularPodcasts id="popular" />
@@ -13,7 +16,8 @@
 </template>
 
 <script>
-import PodcastBlock from './PodcastBlock.vue';
+import podcastItem from './base/podcastItem.vue';
+import dropDownArrow from './base/dropDownArrow.vue';
 import WhatIs from './WhatIs.vue';
 import PopularPodcasts from './PopularPodcasts.vue';
 import BlogBlock from './BlogBlock.vue';
@@ -23,7 +27,8 @@ import OurTeam from './OurTeam.vue';
 export default {
   name: 'Home',
   components: {
-    PodcastBlock,
+    podcastItem,
+    dropDownArrow,
     WhatIs,
     PopularPodcasts,
     BlogBlock,
@@ -34,14 +39,30 @@ export default {
 </script>
 
 <style lang="scss">
+.podcasts_block {
+  margin-bottom: 10%;
+}
+
+.show-more {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  font-size: $font-size-text;
+  &_button {
+    margin-top: 10%;
+    transform: scale(1.25);
+  }
+}
+
 .semi-columns-block {
-  margin: 10% 0;
   @media screen and (max-width: $mq-mob) {
     flex-direction: column;
   }
 }
 
 .semi-columns-block > * {
+  margin-bottom: 10%;
   &:nth-child(1) {
     width: 40%;
   }

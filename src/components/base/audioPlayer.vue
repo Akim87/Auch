@@ -1,46 +1,58 @@
 <template>
-  <div class="player">
+  <div class="player d-flex flex-column">
     <span class="player_date">15 апреля 2019</span>
-    <div class="player_header d-flex justify-between">
-      <span v-if="currentTrack" class="player_track-title">{{ currentTrack.name }}</span>
-      <div class="player_controls d-flex justify-between">
-        <button @click="prevTrack">
-          <iconPrevTrack />
-        </button>
-        <div class="d-flex align-center" @click="play">
-          <button v-if="isTimerPlaying">
-            <iconPauseTrack />
+    <span v-if="$mq === 'sm'" class="player_track-title">{{ currentTrack.name }}</span>
+    <div class="player_box" v-bind:class="{ open: showInfo }">
+      <div class="player_header d-flex justify-between align-center">
+        <span v-if="$mq === 'lg'" class="player_track-title">{{ currentTrack.name }}</span>
+        <span class="player_progress-time" v-if="$mq === 'sm'">{{ currentTime }}</span>
+        <div class="player_controls d-flex justify-between">
+          <button @click="prevTrack">
+            <iconPrevTrack />
           </button>
-          <button v-else>
-            <iconPlayTrack />
+          <div class="d-flex align-center" @click="play">
+            <button v-if="isTimerPlaying">
+              <iconPauseTrack />
+            </button>
+            <button v-else>
+              <iconPlayTrack />
+            </button>
+          </div>
+          <button @click="nextTrack">
+            <iconNextTrack />
           </button>
         </div>
-        <button @click="nextTrack">
-          <iconNextTrack />
-        </button>
+        <span class="player_progress-time" v-if="$mq === 'sm'">{{ duration }}</span>
       </div>
-    </div>
-    <div class="player_progress" ref="progress">
-      <div class="player_progress-bar" @click="clickProgress">
-        <div class="player_progress-current" :style="{ width: barWidth }">
-          <iconProgressBarSlider v-if="duration" class="player_progress-slider" />
+      <div class="player_progress" ref="progress">
+        <div class="player_progress-bar" @click="clickProgress">
+          <div class="player_progress-current" :style="{ width: barWidth }">
+            <iconProgressBarSlider class="player_progress-slider" />
+          </div>
+        </div>
+        <div class="player_footer d-flex justify-between">
+          <span class="player_progress-time" v-if="$mq === 'lg'">{{ currentTime }}</span>
+          <button
+            class="player_dropdown-button d-flex"
+            @click="showInfo = !showInfo"
+            v-bind:class="{ dropdownActive: showInfo }"
+          >
+            <dropDownArrow />
+          </button>
+          <span class="player_progress-time" v-if="$mq === 'lg'">{{ duration }}</span>
         </div>
       </div>
-      <div class="player_progress-time d-flex justify-between">
-        <span class="player_progress-time">{{ currentTime }}</span>
-        <button class="player_dropdown-button d-flex" @click="showInfo = !showInfo" v-bind:class="{ dropdownActive: showInfo }">
-          <dropDownArrow/>
-        </button>
-        <span class="player_progress-time">{{ duration }}</span>
-      </div>
+      <transition name="dropdown">
+        <p class="player_info" v-if="showInfo">
+          В предыдущем эпизоде мы обнаружили, что наши коллеги выгорают из-за неразберихи в
+          процессах. У нас нет чётких правил и регламентов: кто, что и как делает. Нужна ли нам
+          иерархия? Какую систему управления выбрать? Что такое холакратия и аджайл? Как из хаоса
+          выстроить порядок? Обо всём этом мы расспросили руководителя направления эффективности
+          внутренних процессов банка «Точка» Дарью Боровикову и Андрея Леушева, основателя
+          компании...
+        </p>
+      </transition>
     </div>
-    <p class="player_info" v-if="showInfo">
-      В предыдущем эпизоде мы обнаружили, что наши коллеги выгорают из-за неразберихи в процессах. У
-      нас нет чётких правил и регламентов: кто, что и как делает. Нужна ли нам иерархия? Какую
-      систему управления выбрать? Что такое холакратия и аджайл? Как из хаоса выстроить порядок? Обо
-      всём этом мы расспросили руководителя направления эффективности внутренних процессов банка
-      «Точка» Дарью Боровикову и Андрея Леушева, основателя компании...
-    </p>
   </div>
 </template>
 
@@ -65,7 +77,6 @@ export default {
   data() {
     return {
       audio: null,
-      circleLeft: null,
       barWidth: null,
       duration: null,
       currentTime: null,
@@ -98,7 +109,6 @@ export default {
     generateTime() {
       const width = (100 / this.audio.duration) * this.audio.currentTime;
       this.barWidth = `${width}%`;
-      this.circleLeft = `${width}%`;
       const durmin = Math.floor(this.audio.duration / 60);
       let dursec = Math.floor(this.audio.duration - durmin * 60);
       const curmin = Math.floor(this.audio.currentTime / 60);
@@ -109,7 +119,7 @@ export default {
       if (cursec < 10) {
         cursec = `0${cursec}`;
       }
-      this.duration = `${durmin}:${dursec}`;
+      this.duration = `${durmin || '0'}:${dursec || '00'}`;
       this.currentTime = `${curmin}:${cursec}`;
     },
     updateBar(x) {
@@ -124,7 +134,6 @@ export default {
         percentage = 0;
       }
       this.barWidth = `${percentage}%`;
-      this.circleLeft = `${percentage}%`;
       this.audio.currentTime = (maxduration * percentage) / 100;
       this.audio.play();
     },
@@ -158,7 +167,6 @@ export default {
     },
     resetPlayer() {
       this.barWidth = 0;
-      this.circleLeft = 0;
       this.audio.currentTime = 0;
       this.audio.src = this.currentTrack.source;
       setTimeout(() => {
@@ -191,24 +199,16 @@ export default {
 </script>
 
 <style scoped lang="scss">
-svg {
-  width: 3vw;
-}
-
 .player {
-  background-color: #f8f6f3;
-  border: .25rem solid $colour-accent;
-  border-radius: 2rem;
-  padding: 2% 3%;
-  position: relative;
-  transition: all 0.5s linear;
-  max-height: 500px;
-
+  &_box {
+    background-color: #f8f6f3;
+    border: 0.25rem solid $colour-accent;
+    border-radius: 2rem;
+    padding: 2% 3%;
+  }
   &_date {
-    position: absolute;
-    top: -3rem;
-    right: 2%;
     font-size: 1.375rem;
+    align-self: flex-end;
   }
 
   &_header {
@@ -219,15 +219,24 @@ svg {
     align-self: center;
     font-size: 1.75rem;
     margin-right: 6%;
+    @media screen and (max-width: $mq-mob) {
+      margin: 1% 0;
+      align-self: flex-end;
+    }
   }
 
   &_controls {
+    width: 20%;
     & svg {
       vertical-align: middle;
       height: auto;
+      width: 3vw;
     }
-    & > * {
-      margin-right: 1vw;
+    @media screen and (max-width: $mq-mob) {
+      width: 25%;
+      & svg {
+        width: 5vw;
+      }
     }
   }
 
@@ -238,6 +247,7 @@ svg {
     background-color: #efcdae;
     display: inline-block;
     border-radius: 9px;
+    margin: 1% 0;
   }
 
   &_progress-current {
@@ -255,14 +265,25 @@ svg {
     width: 1.5vw;
   }
 
+  &_footer {
+    @media screen and (max-width: $mq-mob) {
+      justify-content: center;
+      margin: 1% 0;
+    }
+  }
+
   &_progress-time {
     font-size: 1.75rem;
-    margin-top: 2%;
+    min-width: 10%;
+    &:nth-of-type(2) {
+      text-align: end;
+    }
   }
 
   &_dropdown-button {
     transition: ease-out 0.2s;
-    width: 2%;
+    padding: 1rem;
+    margin: -1rem;
   }
 
   &_info {
