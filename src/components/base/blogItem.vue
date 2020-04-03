@@ -5,7 +5,7 @@
         <img class="blog-item_img" :src="require(`../../assets/${img}`)" alt='blog image'/>
       </router-link>
     </div>
-    <div class="blog-item_info">
+    <div class="blog-item_info d-flex flex-column">
       <router-link to="blog">
         <h3 class="blog-item_title">{{ title }}</h3>
       </router-link>
@@ -45,7 +45,7 @@ export default {
     margin: 1.5rem;
   }
   &_title {
-    font-size: 2rem;
+    font-size: 2.5rem;
     margin: 1.5rem 0;
     line-height: 3rem;
     &:hover {

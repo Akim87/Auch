@@ -52,13 +52,9 @@ const router = new Router({
       component: SupportProjectPage,
     },
     {
-      path: '/page-not-found',
+      path: '*',
       name: 'page-not-found',
       component: PageNotFound,
-    },
-    {
-      path: '*',
-      redirect: '/page-not-found',
     },
   ],
 });

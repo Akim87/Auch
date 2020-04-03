@@ -27,7 +27,6 @@ export default {
   },
   data() {
     return {
-      sliderMode: 'desk',
       blogs: [
         {
           id: 1,
@@ -74,6 +73,18 @@ export default {
       top: 0;
       left: 80%;
       background: linear-gradient(to right, hsla(0, 0%, 100%, 0), #ffffff 100%);
+    }
+    @media screen and (max-width: $mq-mob) {
+      &::before {
+        content: "";
+        width: 20%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        right: 80%;
+        background: linear-gradient(to left, hsla(0, 0%, 100%, 0), #ffffff 100%);
+        z-index: 1;
+      }
     }
   }
   &_img {

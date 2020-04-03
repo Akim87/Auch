@@ -58,7 +58,7 @@
               <router-link to="/" v-scroll-to="'#popular'">Популярные</router-link>
             </li>
             <li>
-              <router-link to="/" v-scroll-to="'#blog'">Блог</router-link>
+              <router-link to="/" v-scroll-to="'#blogs'">Блог</router-link>
             </li>
           </ul>
           <ul
