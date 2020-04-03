@@ -13,10 +13,14 @@
       <PopularPodcasts id="popular" />
     </div>
     <div id="blogs" class="blogs_block">
-      <h1 v-bind:class="[$mq === 'lg' ? titleUunderlinedRight : titleUunderlinedRight]">Блог</h1>
+      <h1 class="title-underlined-right">Блог</h1>
       <div class="blogs_inner-desk" v-if="$mq === 'lg'">
         <blogItem v-for="blog in blogs" v-bind="blog" :key="blog.id" class="blogs_item-desk" />
       </div>
+      <button class="show-more" v-if="$mq === 'lg'">
+        Показать больше
+        <dropDownArrow class="show-more_button" />
+      </button>
       <Hooper
         class="blogs_inner-mob"
         ref="carousel"
@@ -33,13 +37,13 @@
     <AboutUs id="aboutUs" />
     <div class="our-team">
       <h1 class="title-underlined-right">Наша команда</h1>
-      <Hooper ref="carousel" :infiniteScroll="true" :itemsToShow="2">
+      <Hooper ref="carousel" :settings="hooperSettings">
         <Slide
           class="our-team_group d-flex justify-around"
           v-for="item in teamItems"
-          :key="item.name"
+          :key="item.id"
         >
-          <TeamItem :item="item"></TeamItem>
+          <teamItem v-bind="item"></TeamItem>
         </Slide>
       </Hooper>
       <button class="our-team_next-group" @click.prevent="slideNext"></button>
@@ -55,13 +59,26 @@ import WhatIs from './WhatIs.vue';
 import PopularPodcasts from './PopularPodcasts.vue';
 import blogItem from './base/blogItem.vue';
 import AboutUs from './AboutUs.vue';
-import TeamItem from './base/TeamItem.vue';
+import teamItem from './base/teamItem.vue';
 
 export default {
+  name: 'Home',
+  components: {
+    Hooper,
+    Slide,
+    podcastItem,
+    dropDownArrow,
+    WhatIs,
+    PopularPodcasts,
+    blogItem,
+    AboutUs,
+    teamItem,
+  },
   data() {
     return {
       teamItems: [
         {
+          id: 1,
           photo: 'team-photo1.png',
           name: 'Екатерина Кронгауз',
           description:
@@ -72,6 +89,7 @@ export default {
           },
         },
         {
+          id: 2,
           photo: 'team-photo2.png',
           name: 'Лика Кремер',
           description:
@@ -82,7 +100,8 @@ export default {
           },
         },
         {
-          photo: 'team-photo2.png',
+          id: 3,
+          photo: 'team-photo3.png',
           name: 'Лика Кремер',
           description:
             'Работала на телеканале "Дождь", возглавляла издание snob.ru, создала отдел подкастов в "ауч"',
@@ -92,7 +111,8 @@ export default {
           },
         },
         {
-          photo: 'team-photo2.png',
+          id: 4,
+          photo: 'team-photo4.png',
           name: 'Лика Кремер',
           description:
             'Работала на телеканале "Дождь", возглавляла издание snob.ru, создала отдел подкастов в "ауч"',
@@ -125,19 +145,17 @@ export default {
             'Вундеркинд, талантливый математик, выпускник Гарварда Тед Качинский мог бы всю жизнь писать статьи, понятные лишь десяти его коллегам, и преподавать студентам матанализ. Вместо этого он провёл двадцать лет в лесной хижине, стал маньяком-анархо-примитивистом...',
         },
       ],
+      hooperSettings: {
+        itemsToShow: 1,
+        infiniteScroll: true,
+        breakpoints: {
+          640: {
+            itemsToShow: 2,
+            itemsToSlide: 2,
+          },
+        },
+      },
     };
-  },
-  name: 'Home',
-  components: {
-    Hooper,
-    Slide,
-    podcastItem,
-    dropDownArrow,
-    WhatIs,
-    PopularPodcasts,
-    blogItem,
-    AboutUs,
-    TeamItem,
   },
   methods: {
     slideNext() {
@@ -166,7 +184,6 @@ export default {
 }
 
 .semi-columns-block {
-  margin: 10% 0;
   @media screen and (max-width: $mq-mob) {
     flex-direction: column;
   }
@@ -199,7 +216,7 @@ export default {
       grid-template-columns: 1fr 2fr;
       grid-gap: 1vw;
       width: 90%;
-      margin: 0 auto 10%;
+      margin: 0 auto 2%;
     }
     &-mob {
       position: relative;
@@ -277,7 +294,6 @@ export default {
   }
 
   &_item {
-    margin: 0 4%;
   }
 
   &_member-photo {
@@ -286,7 +302,7 @@ export default {
   }
 
   &_member-info {
-    width: 60%;
+    width: 40%;
     margin-left: 4%;
   }
 

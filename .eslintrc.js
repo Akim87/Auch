@@ -17,10 +17,6 @@ module.exports = {
     'max-len': 0,
   },
   settings: {
-    'import/resolver': {
-      node: {
-        paths: ['src'],
-      },
-    },
+    "import/extensions": "off",
   },
 };
