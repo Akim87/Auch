@@ -31,7 +31,19 @@
       </Hooper>
     </div>
     <AboutUs id="aboutUs" />
-    <OurTeam id="ourTeam" />
+    <div class="our-team">
+      <h1 class="title-underlined-right">Наша команда</h1>
+      <Hooper ref="carousel" :infiniteScroll="true" :itemsToShow="2">
+        <Slide
+          class="our-team_group d-flex justify-around"
+          v-for="item in teamItems"
+          :key="item.name"
+        >
+          <TeamItem :item="item"></TeamItem>
+        </Slide>
+      </Hooper>
+      <button class="our-team_next-group" @click.prevent="slideNext"></button>
+    </div>
   </main>
 </template>
 
@@ -43,24 +55,53 @@ import WhatIs from './WhatIs.vue';
 import PopularPodcasts from './PopularPodcasts.vue';
 import blogItem from './base/blogItem.vue';
 import AboutUs from './AboutUs.vue';
-import OurTeam from './OurTeam.vue';
+import TeamItem from './base/TeamItem.vue';
 
 export default {
-  name: 'Home',
-  components: {
-    Hooper,
-    Slide,
-    podcastItem,
-    dropDownArrow,
-    WhatIs,
-    PopularPodcasts,
-    // BlogBlock,
-    blogItem,
-    AboutUs,
-    OurTeam,
-  },
   data() {
     return {
+      teamItems: [
+        {
+          photo: 'team-photo1.png',
+          name: 'Екатерина Кронгауз',
+          description:
+            'Работала на телеканале "Дождь", возглавляла издание snob.ru, создала отдел подкастов в "ауч"',
+          contacts: {
+            instagram: '',
+            vk: '',
+          },
+        },
+        {
+          photo: 'team-photo2.png',
+          name: 'Лика Кремер',
+          description:
+            'Работала на телеканале "Дождь", возглавляла издание snob.ru, создала отдел подкастов в "ауч"',
+          contacts: {
+            instagram: '',
+            vk: '',
+          },
+        },
+        {
+          photo: 'team-photo2.png',
+          name: 'Лика Кремер',
+          description:
+            'Работала на телеканале "Дождь", возглавляла издание snob.ru, создала отдел подкастов в "ауч"',
+          contacts: {
+            instagram: '',
+            vk: '',
+          },
+        },
+        {
+          photo: 'team-photo2.png',
+          name: 'Лика Кремер',
+          description:
+            'Работала на телеканале "Дождь", возглавляла издание snob.ru, создала отдел подкастов в "ауч"',
+          contacts: {
+            instagram: '',
+            vk: '',
+          },
+        },
+      ],
       blogs: [
         {
           id: 1,
@@ -84,8 +125,24 @@ export default {
             'Вундеркинд, талантливый математик, выпускник Гарварда Тед Качинский мог бы всю жизнь писать статьи, понятные лишь десяти его коллегам, и преподавать студентам матанализ. Вместо этого он провёл двадцать лет в лесной хижине, стал маньяком-анархо-примитивистом...',
         },
       ],
-      isDesktop: this.$mq === 'lg',
     };
+  },
+  name: 'Home',
+  components: {
+    Hooper,
+    Slide,
+    podcastItem,
+    dropDownArrow,
+    WhatIs,
+    PopularPodcasts,
+    blogItem,
+    AboutUs,
+    TeamItem,
+  },
+  methods: {
+    slideNext() {
+      this.$refs.carousel.slideNext();
+    },
   },
 };
 </script>
@@ -109,6 +166,7 @@ export default {
 }
 
 .semi-columns-block {
+  margin: 10% 0;
   @media screen and (max-width: $mq-mob) {
     flex-direction: column;
   }
@@ -130,7 +188,6 @@ export default {
     }
   }
 }
-
 .blogs {
   &_inner {
     &-desk {
@@ -190,6 +247,65 @@ export default {
         width: 100%;
       }
     }
+  }
+}
+
+.our-team {
+  position: relative;
+
+  &_next-group {
+    margin: 1%;
+    position: absolute;
+    top: 50%;
+    right: 3%;
+    &::after,
+    &::before {
+      content: "";
+      background-color: $colour-accent;
+      height: 3px;
+      width: 20px;
+      position: absolute;
+    }
+    &::before {
+      transform: rotate(-55deg);
+      top: 7px;
+    }
+    &::after {
+      transform: rotate(55deg);
+      top: -7px;
+    }
+  }
+
+  &_item {
+    margin: 0 4%;
+  }
+
+  &_member-photo {
+    align-self: baseline;
+    width: 11vw;
+  }
+
+  &_member-info {
+    width: 60%;
+    margin-left: 4%;
+  }
+
+  &_member-name {
+    font-weight: bold;
+    font-size: 2.25rem;
+    margin-bottom: 2%;
+  }
+
+  &_member-contacts-item {
+    width: 11%;
+    margin: 4% 4% 0 0;
+    height: auto;
+  }
+
+  &_member-charge {
+    font-family: $font-family-Lora;
+    font-size: $font-size-text;
+    line-height: 2.5rem;
   }
 }
 </style>
