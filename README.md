@@ -24,7 +24,7 @@ npm run lint
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### Endpoints
-
+```
 podcasts = [
   {
     id: Number,
@@ -56,7 +56,8 @@ podcasts = [
     ],
   },
 ],
-
+```
+```
 blogs = [
   {
     id: Number,
@@ -73,3 +74,4 @@ blogs = [
     ],
   },
 ],
+```
