@@ -9,11 +9,31 @@
       </button>
     </div>
     <div class="semi-columns-block d-flex justify-between">
-      <WhatIs id="whatsIsIt" />
-      <PopularPodcasts id="popular" />
+      <div id="whatsIsIt" class="what-is">
+        <h1 class="title_underlined __left">Что такое подкасты?</h1>
+        <p class="what-is_text">
+          Подкасты — это как Youtube, только аудио. Такие регулярные программы, сериалы или блоги,
+          которые можно скачивать или слушать онлайн. Сам термин «подкастинг» придумали в 2004 году,
+          скрестив слова iPod и broadcasting — «радиовещание».
+        </p>
+      </div>
+      <div class="popular-podcasts">
+        <h1 class="title_underlined">Популярные</h1>
+        <Hooper class="popular-podcasts_slider" ref="carousel" :settings="popularBlockSlider">
+          <Slide v-for="podcast in podcasts" :key="podcast.id">
+            <router-link to="podcast">
+              <img
+                class="popular-podcasts_img"
+                :src="require(`../assets/${podcast.img}`)"
+                alt="podcast cover"
+              />
+            </router-link>
+          </Slide>
+        </Hooper>
+      </div>
     </div>
     <div id="blogs" class="blogs_block">
-      <h1 class="title-underlined-right">Блог</h1>
+      <h1 class="title_underlined" v-bind:class="{ __left: $mq === 'sm' }">Блог</h1>
       <div class="blogs_inner-desk" v-if="$mq === 'lg'">
         <blogItem v-for="blog in blogs" v-bind="blog" :key="blog.id" class="blogs_item-desk" />
       </div>
@@ -34,16 +54,22 @@
         </Slide>
       </Hooper>
     </div>
-    <AboutUs id="aboutUs" />
+    <div id="aboutUs" class="about-us">
+      <h1 class="title_underlined" v-bind:class="{ __left: $mq === 'lg' }">О нас</h1>
+      <p class="about-us_text">
+        Есть три основных способа зарабатывать на подкастах — это реклама в подкастах уже собравших
+        свою аудиторию, подкасты, сделанные вместе с брендами и краудфандинг (когда аудитория так
+        полюбила вас, что готова поддерживать деньгами). Конечно бывают еще и платные сервисы,
+        которые распространяют подкасты за деньги. Но в России, где рынок пока только развивается,
+        заработать таким образом непросто. Хотя есть и удачные примеры. Например, Arzamas
+        распространяет свои подкасты через специальное приложение Радио. Арзамас.
+      </p>
+    </div>
     <div class="our-team">
-      <h1 class="title-underlined-right">Наша команда</h1>
-      <Hooper ref="carousel" :settings="hooperSettings">
-        <Slide
-          class="our-team_group d-flex justify-around"
-          v-for="item in teamItems"
-          :key="item.id"
-        >
-          <teamItem v-bind="item"></TeamItem>
+      <h1 class="title_underlined" v-bind:class="{ __left: $mq === 'sm' }">Наша команда</h1>
+      <Hooper ref="carousel" :settings="teamBlockSlider">
+        <Slide class="our-team_item d-flex justify-around" v-for="item in teamItems" :key="item.id">
+          <teamItem v-bind="item"></teamItem>
         </Slide>
       </Hooper>
       <button class="our-team_next-group" @click.prevent="slideNext"></button>
@@ -53,12 +79,10 @@
 
 <script>
 import { Hooper, Slide } from 'hooper';
+import 'hooper/dist/hooper.css';
 import podcastItem from './base/podcastItem.vue';
 import dropDownArrow from './base/dropDownArrow.vue';
-import WhatIs from './WhatIs.vue';
-import PopularPodcasts from './PopularPodcasts.vue';
 import blogItem from './base/blogItem.vue';
-import AboutUs from './AboutUs.vue';
 import teamItem from './base/teamItem.vue';
 
 export default {
@@ -68,10 +92,7 @@ export default {
     Slide,
     podcastItem,
     dropDownArrow,
-    WhatIs,
-    PopularPodcasts,
     blogItem,
-    AboutUs,
     teamItem,
   },
   data() {
@@ -145,7 +166,35 @@ export default {
             'Вундеркинд, талантливый математик, выпускник Гарварда Тед Качинский мог бы всю жизнь писать статьи, понятные лишь десяти его коллегам, и преподавать студентам матанализ. Вместо этого он провёл двадцать лет в лесной хижине, стал маньяком-анархо-примитивистом...',
         },
       ],
-      hooperSettings: {
+      podcasts: [
+        {
+          id: 1,
+          img: 'cover1.png',
+          title: 'Возвращение луи Си Кея',
+          text:
+            'Вундеркинд, талантливый математик, выпускник Гарварда Тед Качинский мог бы всю жизнь писать статьи, понятные лишь десяти его коллегам, и преподавать студентам матанализ. Вместо этого он провёл двадцать лет в лесной хижине, стал маньяком-анархо-примитивистом...',
+        },
+        {
+          id: 2,
+          img: 'cover2.png',
+          title: 'Время учёных',
+          text:
+            'Вундеркинд, талантливый математик, выпускник Гарварда Тед Качинский мог бы всю жизнь писать статьи, понятные лишь десяти его коллегам, и преподавать студентам матанализ. Вместо этого он провёл двадцать лет в лесной хижине, стал маньяком-анархо-примитивистом...',
+        },
+      ],
+      popularBlockSlider: {
+        itemsToShow: 1.5,
+        centerMode: true,
+        infiniteScroll: true,
+        autoPlay: true,
+        breakpoints: {
+          640: {
+            centerMode: false,
+            itemsToShow: 2.5,
+          },
+        },
+      },
+      teamBlockSlider: {
         itemsToShow: 1,
         infiniteScroll: true,
         breakpoints: {
@@ -167,7 +216,8 @@ export default {
 
 <style lang="scss">
 .podcasts_block,
-.blogs_block {
+.blogs_block,
+.about-us {
   margin-bottom: 10%;
 }
 
@@ -205,6 +255,57 @@ export default {
     }
   }
 }
+
+.what-is {
+  & .title_underlined::after {
+    width: 100%;
+    @media screen and (max-width: $mq-mob) {
+      width: 80%;
+    }
+  }
+  &_text {
+    width: 70%;
+    margin: 10% auto 0;
+    font-size: $font-size-text;
+    @media screen and (max-width: $mq-mob) {
+      width: 90%;
+    }
+  }
+}
+
+.popular-podcasts {
+  & .title_underlined::after {
+    width: 70%;
+  }
+  &_slider {
+    position: relative;
+    &::after {
+      content: "";
+      width: 20%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 80%;
+      background: linear-gradient(to right, hsla(0, 0%, 100%, 0), #ffffff 100%);
+    }
+    @media screen and (max-width: $mq-mob) {
+      &::before {
+        content: "";
+        width: 20%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        right: 80%;
+        background: linear-gradient(to left, hsla(0, 0%, 100%, 0), #ffffff 100%);
+        z-index: 1;
+      }
+    }
+  }
+  &_img {
+    width: 95%;
+  }
+}
+
 .blogs {
   &_inner {
     &-desk {
@@ -267,9 +368,31 @@ export default {
   }
 }
 
+.about-us {
+  &_text {
+    width: 50%;
+    margin: 0 auto;
+    font-family: $font-family-Lora;
+    font-size: $font-size-text;
+    @media screen and (max-width: $mq-mob) {
+      width: 90%;
+    }
+  }
+}
+
 .our-team {
   position: relative;
-
+  & .title_underlined {
+    margin-bottom: 5%;
+    @media screen and (max-width: $mq-mob) {
+    margin-bottom: 10%;
+  }
+    &::after {
+      @media screen and (max-width: $mq-mob) {
+        width: 70%;
+      }
+    }
+  }
   &_next-group {
     margin: 1%;
     position: absolute;
@@ -291,37 +414,6 @@ export default {
       transform: rotate(55deg);
       top: -7px;
     }
-  }
-
-  &_item {
-  }
-
-  &_member-photo {
-    align-self: baseline;
-    width: 11vw;
-  }
-
-  &_member-info {
-    width: 40%;
-    margin-left: 4%;
-  }
-
-  &_member-name {
-    font-weight: bold;
-    font-size: 2.25rem;
-    margin-bottom: 2%;
-  }
-
-  &_member-contacts-item {
-    width: 11%;
-    margin: 4% 4% 0 0;
-    height: auto;
-  }
-
-  &_member-charge {
-    font-family: $font-family-Lora;
-    font-size: $font-size-text;
-    line-height: 2.5rem;
   }
 }
 </style>

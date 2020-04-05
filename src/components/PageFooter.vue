@@ -1,4 +1,3 @@
-
 <template>
   <div class="footer">
     <div class="d-flex justify-between socials">
@@ -7,7 +6,9 @@
       <a href="#"><iconTelegram class="socials-item"/></a>
     </div>
     <div class="support-project d-flex justify-center">
-      <router-link to="/support-project-page" class="support-link">Хочешь поддержать проект?</router-link>
+      <router-link to="/support-project-page" class="support-link"
+        >Хочешь поддержать проект?</router-link
+      >
     </div>
   </div>
 </template>
@@ -25,44 +26,40 @@ export default {
     iconTelegram,
   },
 };
-
 </script>
 
 <style scoped lang="scss">
-  .footer {
-    border-top: .25rem solid $colour-accent;
-    margin-top: 10%;
-  }
+.footer {
+  border-top: 0.25rem solid $colour-accent;
+}
 
-  .socials {
-    width: 25%;
-    margin: 0 auto;
-    background-color: white;
-    transform: translateY(-50%);
-    padding: 0 4%;
-    &-item {
-      height: auto;
-      width: 5vw;
-      &:nth-child(2) {
+.socials {
+  width: 25%;
+  margin: 0 auto;
+  background-color: white;
+  transform: translateY(-50%);
+  padding: 0 4%;
+  &-item {
+    height: auto;
+    width: 5vw;
+    &:nth-child(2) {
       margin: 0 6%;
-      }
     }
   }
+}
 
-  .support-project {
-    background-color: $colour-accent;
-    margin-bottom: 2%;
+.support-project {
+  background-color: $colour-accent;
+  margin-bottom: 2%;
+}
+
+.support-link {
+  color: white;
+  font-size: 2.25rem;
+  line-height: 4rem;
+  transition: all 0.5s ease;
+  &:hover {
+    color: black;
   }
-
-  .support-link {
-    color: white;
-    font-size: 2.25rem;
-    line-height: 4rem;
-    transition: all 0.5s ease;
-    &:hover {
-      color: black;
-    }
-  }
-
-
+}
 </style>

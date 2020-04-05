@@ -127,7 +127,7 @@ export default {
       border-bottom: 0.1875rem solid $colour-accent;
       margin-bottom: 2rem;
       align-items: flex-end;
-      font-size: 1.75rem;
+      font-size: 1.5rem;
       transition: all 0.5s ease;
       & li {
         transition: all 0.5s ease;

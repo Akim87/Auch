@@ -141,7 +141,6 @@ export default {
       this.isTimerPlaying = true;
       this.audio.pause();
       this.updateBar(e.offsetX);
-      console.log(e.offsetX);
     },
     prevTrack() {
       this.isShowCover = false;
@@ -269,6 +268,7 @@ export default {
     @media screen and (max-width: $mq-mob) {
       justify-content: center;
       margin: 1% 0;
+      padding-right: 2%;
     }
   }
 

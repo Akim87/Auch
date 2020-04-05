@@ -3,6 +3,7 @@
     <div class="blog_header">
       <div class="blog_header-picture"></div>
     </div>
+    <h1 class="title_underlined __left" v-if="$mq === 'sm'">Время учёных</h1>
     <div class="blog_staff d-flex flex-column justify-center">
       <div class="blog_staff-inner">
         <div class="blog_staff-item d-flex flex-column">
@@ -20,7 +21,7 @@
       </div>
     </div>
     <div class="blog_main">
-      <h1 class="title-underlined-left blog_main-title">Время ученых</h1>
+      <h1 class="title_underlined __left blog_main-title" v-if="$mq === 'lg'">Время ученых</h1>
       <article class="blog_main-text">
         <p>
           Днём 25 мая 1978 года на автостоянке Иллинойского университета в Чикаго появилась посылка
@@ -93,20 +94,28 @@
       <div class="blog_podcast d-flex flex-column">
         <span class="decoration_title">подкаст</span>
         <div class="blog_podcast-cover">
-          <router-link to='podcast'>
-            <img src="../assets/blog-podcast-cover.png" alt="podcast cover image">
+          <router-link to="podcast">
+            <img src="../assets/blog-podcast-cover.png" alt="podcast cover image" />
           </router-link>
         </div>
-        <router-link to='podcast'>
+        <router-link to="podcast">
           <h2 class="blog_podcast-title">Одно расстройство</h2>
         </router-link>
       </div>
-      <div class="blog_illustration-item d-flex flex-column align-center">
-        <img class="blog_ilustration-pic" src="../assets/blog-illustration2.png" alt="blog illustration">
+      <div class="blog_illustration-item d-flex flex-column align-center" v-if="$mq === 'lg'">
+        <img
+          class="blog_ilustration-pic"
+          src="../assets/blog-illustration2.png"
+          alt="blog illustration"
+        />
         <span class="blog_ilustration-title">Тед Качинский</span>
       </div>
-      <div class="blog_illustration-item d-flex flex-column align-center">
-        <img class="blog_ilustration-pic" src="../assets/blog-illustration1.png" alt="blog illustration">
+      <div class="blog_illustration-item d-flex flex-column align-center" v-if="$mq === 'lg'">
+        <img
+          class="blog_ilustration-pic"
+          src="../assets/blog-illustration1.png"
+          alt="blog illustration"
+        />
         <span class="blog_ilustration-title">Тед Качинский</span>
       </div>
     </div>
@@ -131,6 +140,17 @@ export default {
   grid-template-rows: 30vw 1fr;
   grid-template-columns: 2fr 1fr;
   grid-gap: 2vw;
+  @media screen and (max-width: $mq-mob) {
+    grid-template-areas:
+      "header"
+      "title"
+      "staff"
+      "main"
+      "aside";
+    grid-template-rows: 27vh auto auto auto auto;
+    grid-template-columns: auto;
+    grid-gap: 1vw;
+  }
 
   &_header {
     grid-area: header;
@@ -143,6 +163,10 @@ export default {
       background-image: url(../assets/blog-header-pic.png);
       background-size: contain;
       background-repeat: no-repeat;
+      @media screen and (max-width: $mq-mob) {
+        width: 85vw;
+        margin-top: 5%;
+      }
 
       &::after {
         content: "";
@@ -158,12 +182,31 @@ export default {
       }
     }
   }
+
+  & .title_underlined {
+    grid-area: title;
+    align-self: baseline;
+    text-align: start;
+    padding-left: 5%;
+    width: 50%;
+    &::after {
+      width: 100%;
+    }
+  }
+
   &_staff {
     grid-area: staff;
     align-items: center;
+    @media screen and (max-width: $mq-mob) {
+      align-items: baseline;
+      margin-left: 5%;
+    }
 
     &-item {
       margin-bottom: 10%;
+      @media screen and (max-width: $mq-mob) {
+        margin-bottom: 5%;
+      }
     }
 
     &-position {
@@ -177,6 +220,9 @@ export default {
   }
   &_main {
     grid-area: main;
+    @media screen and (max-width: $mq-mob) {
+      margin-bottom: 10%;
+    }
 
     &-title {
       text-align: start;
@@ -201,15 +247,26 @@ export default {
   }
   &_podcast {
     &-cover {
-      border: .1875rem solid $colour-accent;
-      border-right: none;
-      border-radius: .75rem;
+      border: 0.1875rem solid $colour-accent;
+      border-radius: 0.75rem 0 0 0.75rem;
       margin: 0 0 4% 4%;
+      padding: 5%;
+      @media screen and (min-width: $mq-mob) {
+        border-right: none;
+      }
+      @media screen and (max-width: $mq-mob) {
+        border-left: none;
+        border-radius: 0 0.75rem 0.75rem 0;
+        margin: 0 auto 5% 0;
+        padding: 3% 3% 3% 10%;
+      }
       & img {
         width: 22vw;
-        margin: 5%;
         display: block;
         transition: ease-out 0.2s;
+        @media screen and (max-width: $mq-mob) {
+          width: 47vw;
+        }
         &:hover {
           transform: scale(1.1);
         }
@@ -221,10 +278,10 @@ export default {
       padding-left: 10%;
       &:hover {
         color: $colour-accent;
-    }
+      }
     }
   }
-  &_ilustration{
+  &_ilustration {
     &-pic {
       width: 21vw;
       margin-bottom: 2%;
@@ -244,5 +301,9 @@ export default {
   padding-left: 10%;
   display: block;
   margin-bottom: 4%;
+  @media screen and (max-width: $mq-mob) {
+    width: 90%;
+    margin-left: auto;
+  }
 }
 </style>

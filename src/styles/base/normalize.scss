@@ -37,3 +37,10 @@ input {
 .hooper:focus {
   outline: none;
 }
+
+.hooper {
+  height: auto!important;
+  &-slide {
+    height: auto!important;
+  }
+}

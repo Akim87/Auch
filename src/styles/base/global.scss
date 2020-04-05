@@ -14,9 +14,7 @@
   @media screen and (max-width: 850px) {
     font-size: 7px;
   }
-
 }
-
 
 html,
 body {
@@ -50,11 +48,10 @@ body {
 }
 
 .align-center {
- align-items: center;
+  align-items: center;
 }
 
-.title-underlined-left,
-.title-underlined-right {
+.title_underlined {
   text-align: center;
   position: relative;
   margin-bottom: 5%;
@@ -71,17 +68,11 @@ body {
     right: 0;
     bottom: -1rem;
   }
-}
 
-.title-underlined-left {
-  &::after {
-    left: 0;
-  }
-}
-
-.title-underlined-right {
-  &::after {
-    right: 0;
+  &.__left {
+    &::after {
+      left: 0;
+    }
   }
 }
 
@@ -89,29 +80,24 @@ body {
   transform: scale(1, -1);
 }
 
-.hooper {
-  height: auto!important;
-  &-slide {
-    height: auto!important;
-  }
-}
-
+// ====== Animation =======
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: all .5s ease;
+  transition: all 0.5s ease;
 }
 
-
-.fade-enter, .fade-leave-to {
+.fade-enter,
+.fade-leave-to {
   opacity: 0;
 }
 
 .dropdown-enter-active,
 .dropdown-leave-active {
-  transition: all .3s ease;
+  transition: all 0.3s ease;
 }
 
-.dropdown-enter, .dropdown-leave-to {
+.dropdown-enter,
+.dropdown-leave-to {
   transform: translateY(-50%) scale(0);
 }

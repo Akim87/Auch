@@ -90,11 +90,11 @@ export default {
 
   &_link {
     height: fit-content;
+    position: relative;
+    top: -2rem;
   }
 
   &_image {
-    position: relative;
-    top: -2rem;
     width: 23vw;
     align-self: baseline;
     transition: ease-out 0.2s;

@@ -51,7 +51,7 @@ export default {
     text-align: left;
     padding: 0 2%;
     line-height: 3rem;
-    margin-bottom: 1%;
+    margin-bottom: 5%;
     @media screen and (max-width: $mq-mob) {
     width: 20%
   }

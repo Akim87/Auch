@@ -54,4 +54,11 @@ export default {
     margin-top: 20%;
   }
 }
+
+#contacts {
+  margin-top: 10%;
+  @media screen and (max-width: $mq-mob) {
+    margin-top: 20%;
+  }
+}
 </style>
