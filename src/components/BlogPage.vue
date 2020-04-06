@@ -234,6 +234,9 @@ export default {
       font-size: 1.75rem;
       font-family: $font-family-Lora;
       line-height: 2.25rem;
+      @media screen and (max-width: $mq-mob) {
+        margin-right: 5%;
+      }
       &-title {
         margin-top: 10%;
       }

@@ -53,8 +53,8 @@ export default {
     line-height: 3rem;
     margin-bottom: 5%;
     @media screen and (max-width: $mq-mob) {
-    width: 20%
-  }
+      width: 20%
+    }
   }
   &_info {
     width: 65%;

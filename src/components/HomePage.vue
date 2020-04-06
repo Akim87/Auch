@@ -17,7 +17,7 @@
           скрестив слова iPod и broadcasting — «радиовещание».
         </p>
       </div>
-      <div class="popular-podcasts">
+      <div id="popular" class="popular-podcasts">
         <h1 class="title_underlined">Популярные</h1>
         <Hooper class="popular-podcasts_slider" ref="carousel" :settings="popularBlockSlider">
           <Slide v-for="podcast in podcasts" :key="podcast.id">
@@ -65,7 +65,7 @@
         распространяет свои подкасты через специальное приложение Радио. Арзамас.
       </p>
     </div>
-    <div class="our-team">
+    <div id="ourTeam" class="our-team">
       <h1 class="title_underlined" v-bind:class="{ __left: $mq === 'sm' }">Наша команда</h1>
       <Hooper ref="carousel" :settings="teamBlockSlider">
         <Slide class="our-team_item d-flex justify-around" v-for="item in teamItems" :key="item.id">
@@ -269,6 +269,7 @@ export default {
     font-size: $font-size-text;
     @media screen and (max-width: $mq-mob) {
       width: 90%;
+      margin: 0 auto;
     }
   }
 }
@@ -383,10 +384,6 @@ export default {
 .our-team {
   position: relative;
   & .title_underlined {
-    margin-bottom: 5%;
-    @media screen and (max-width: $mq-mob) {
-    margin-bottom: 10%;
-  }
     &::after {
       @media screen and (max-width: $mq-mob) {
         width: 70%;

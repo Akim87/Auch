@@ -13,7 +13,7 @@
             <router-link to="/" v-scroll-to="'#popular'">Популярные</router-link>
           </li>
           <li>
-            <router-link to="/" v-scroll-to="'#blog'">Блог</router-link>
+            <router-link to="/" v-scroll-to="'#blogs'">Блог</router-link>
           </li>
         </ul>
         <router-link class="header_logo-link" to="/" v-scroll-to="'#header'"
@@ -183,7 +183,7 @@ export default {
       border-radius: 0px 0px 22px 22px;
       box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.2);
       & li {
-        font-size: 2.5rem;
+        font-size: 2rem;
         color: white;
       }
     }
