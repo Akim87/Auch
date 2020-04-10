@@ -2,14 +2,14 @@
   <div class="blog-item d-flex">
     <div class="blog-item_img-holder d-flex justify-center">
       <router-link to="blog">
-        <img class="blog-item_img" :src="require(`../../assets/${img}`)" alt='blog image'/>
+        <img class="blog-item_img" v-lazy="coverImgLink" alt='blog image'/>
       </router-link>
     </div>
     <div class="blog-item_info d-flex flex-column">
       <router-link to="blog">
         <h3 class="blog-item_title">{{ title }}</h3>
       </router-link>
-      <p class="blog-item_text">{{ text }}</p>
+      <p class="blog-item_text">{{ description }}</p>
     </div>
   </div>
 </template>
@@ -18,9 +18,9 @@
 export default {
   name: 'blogItem',
   props: {
-    img: String,
+    coverImgLink: String,
     title: String,
-    text: String,
+    description: String,
   },
 };
 </script>

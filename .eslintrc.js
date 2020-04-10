@@ -17,6 +17,6 @@ module.exports = {
     'max-len': 0,
   },
   settings: {
-    "import/extensions": "off",
+    'import/extensions': 'off',
   },
 };

@@ -2,51 +2,39 @@
   <div class="podcast d-flex flex-column">
     <span class="decoration_title">подкаст</span>
     <div class="podcast_block d-flex">
-      <router-link class="podcast_link" to="podcast">
-        <img class="podcast_image" src="../../assets/cover1.png" alt="podcast image" />
+      <router-link class="podcast_link" :to="{ name: 'podcast', params: { podcastId: id }}">
+        <img class="podcast_image" v-lazy="coverImgLink" alt="podcast image" />
       </router-link>
       <div class="podcast_info">
-        <router-link to="podcast">
-          <h2 class="podcast_title">65 Интуитивное питание: почему диеты не работают</h2>
+        <router-link :to="{ name: 'podcast', params: { podcastId: id }}">
+          <h2 class="podcast_title">{{ title }}</h2>
           </router-link>
         <p class="podcast_description">
-          В этом выпуске мы говорим о диетах и желании похудеть. Объясняем о том, почему диеты
-          никогда не работают и что не так с нашими взаимоотношениями с едой. А также рассказываем,
-          почему мы сами отказались от диет и почему перешли на интуитивное питание.
+          {{ description }}
         </p>
       </div>
-      <audioPlayer class="podcast_player"/>
+      <audioPlayer v-bind="episodes[0]" class="podcast_player"/>
     </div>
-    <div class="ext-services d-flex justify-center align-center">
-      <span>Слушайте в:</span>
-      <a href="#">
-        <img src="../../assets/Castbox_logo 1.png" alt="service-logo" />
-      </a>
-      <a href="#">
-        <img src="../../assets/google-podcasts-logo 1.png" alt="service-logo" />
-      </a>
-      <a href="#">
-        <img src="../../assets/PngItem_1884034 1.png" alt="service-logo" />
-      </a>
-      <a href="#">
-        <img src="../../assets/Spotify_Logo_CMYK_Green 1.png" alt="service-logo" />
-      </a>
-    </div>
+    <extServices/>
   </div>
 </template>
 
 <script>
 import audioPlayer from './audioPlayer.vue';
+import extServices from './externalServicesBlock.vue';
 
 export default {
   name: 'PodcastBlock',
   components: {
     audioPlayer,
+    extServices,
   },
   props: {
-    podcastImageUrl: String,
-    podcastTitle: String,
-    podcastDescription: String,
+    id: String,
+    title: String,
+    description: String,
+    coverImgLink: String,
+    episodes: Array,
   },
 };
 </script>
@@ -127,24 +115,4 @@ export default {
   }
 }
 
-.ext-services {
-  border-top: .1875rem solid $colour-accent;
-  border-bottom: .1875rem solid $colour-accent;
-  padding: 0.5% 0;
-  & > * {
-    margin-right: 3%;
-  }
-  & span {
-    font-size: 1.5rem;
-  }
-  & img {
-    vertical-align: middle;
-    width: 7vw;
-    transition: all 1s ease;
-    filter: grayscale(1);
-    &:hover {
-      filter: none;
-    }
-  }
-}
 </style>

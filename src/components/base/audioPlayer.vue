@@ -1,10 +1,10 @@
 <template>
   <div class="player d-flex flex-column">
-    <span class="player_date">15 апреля 2019</span>
-    <span v-if="$mq === 'sm'" class="player_track-title">{{ currentTrack.name }}</span>
+    <span class="player_date">{{ date }}</span>
+    <span v-if="$mq === 'sm'" class="player_track-title">{{ title }}</span>
     <div class="player_box" v-bind:class="{ open: showInfo }">
       <div class="player_header d-flex justify-between align-center">
-        <span v-if="$mq === 'lg'" class="player_track-title">{{ currentTrack.name }}</span>
+        <span v-if="$mq === 'lg'" class="player_track-title">{{ title }}</span>
         <span class="player_progress-time" v-if="$mq === 'sm'">{{ currentTime }}</span>
         <div class="player_controls d-flex justify-between">
           <button @click="prevTrack">
@@ -44,12 +44,7 @@
       </div>
       <transition name="dropdown">
         <p class="player_info" v-if="showInfo">
-          В предыдущем эпизоде мы обнаружили, что наши коллеги выгорают из-за неразберихи в
-          процессах. У нас нет чётких правил и регламентов: кто, что и как делает. Нужна ли нам
-          иерархия? Какую систему управления выбрать? Что такое холакратия и аджайл? Как из хаоса
-          выстроить порядок? Обо всём этом мы расспросили руководителя направления эффективности
-          внутренних процессов банка «Точка» Дарью Боровикову и Андрея Леушева, основателя
-          компании...
+          {{ description }}
         </p>
       </transition>
     </div>
@@ -95,6 +90,13 @@ export default {
       currentTrack: null,
       currentTrackIndex: 0,
     };
+  },
+  props: {
+    id: String,
+    title: String,
+    description: String,
+    date: Number,
+    audioFileLink: String,
   },
   methods: {
     play() {

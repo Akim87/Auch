@@ -24,18 +24,12 @@ export default {
   data() {
     return {
       showBecomeAuthorPopup: false,
-      podcastsToShow: 2,
-      blogsToShow: 2,
-      podcasts: [
-        {
-          id: 1,
-        },
-        {
-          id: 1,
-        },
-      ],
     };
   },
+  // mounted() {
+  //   this.$store.dispatch('GET_PODCASTS');
+  //   this.$store.dispatch('GET_POSTS');
+  // },
 };
 </script>
 

@@ -41,29 +41,9 @@
         </div>
       </div>
     </div>
-    <span class="ext-services_title">Слушайте в:</span>
-    <div class="ext-services d-flex justify-center align-center">
-      <a href="#">
-        <img src="../assets/Castbox_logo 1.png" alt="service-logo" />
-      </a>
-      <a href="#">
-        <img src="../assets/google-podcasts-logo 1.png" alt="service-logo" />
-      </a>
-      <a href="#">
-        <img src="../assets/PngItem_1884034 1.png" alt="service-logo" />
-      </a>
-      <a href="#">
-        <img src="../assets/Spotify_Logo_CMYK_Green 1.png" alt="service-logo" />
-      </a>
-    </div>
+    <extServices/>
     <div class="podcast_players-container">
       <span class="podcast_episodes-number">17 эпизодов</span>
-      <audioPlayer class="podcast_players-item" />
-      <audioPlayer class="podcast_players-item" />
-      <audioPlayer class="podcast_players-item" />
-      <audioPlayer class="podcast_players-item" />
-      <audioPlayer class="podcast_players-item" />
-      <audioPlayer class="podcast_players-item" />
       <audioPlayer class="podcast_players-item" />
     </div>
   </div>
@@ -71,11 +51,13 @@
 
 <script>
 import audioPlayer from './base/audioPlayer.vue';
+import extServices from './base/externalServicesBlock.vue';
 
 export default {
   name: 'PodcastPage',
   components: {
     audioPlayer,
+    extServices,
   },
   props: {
     podcast: Object,
@@ -100,7 +82,7 @@ export default {
 
 .podcast {
   &_main {
-    margin-top: 1%;
+    margin: 1% 0 3%;
     position: relative;
     display: grid;
     grid-template-areas:
@@ -257,6 +239,10 @@ export default {
     }
   }
 
+  &_players-container {
+    margin-top: 5%;
+  }
+
   &_players-item {
     width: 90%;
     margin: 0 auto 4%;
@@ -274,34 +260,6 @@ export default {
     font-weight: bold;
     @media screen and (max-width: $mq-mob) {
       width: 30%;
-    }
-  }
-}
-
-.ext-services {
-  border-top: 0.1875rem solid $colour-accent;
-  border-bottom: 0.1875rem solid $colour-accent;
-  padding: 0.5% 0;
-  margin-bottom: 10%;
-  & > * {
-    margin-right: 4%;
-  }
-  &_title {
-    font-size: 2.25rem;
-    margin-left: 7%;
-    line-height: 4rem;
-  }
-  & img {
-    vertical-align: middle;
-    width: 7vw;
-    transition: all 1s ease;
-    flex-wrap: wrap;
-    filter: grayscale(1);
-    &:hover {
-      filter: none;
-    }
-    @media screen and (max-width: $mq-mob) {
-      width: 15vw;
     }
   }
 }
